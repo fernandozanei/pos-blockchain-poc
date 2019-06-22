@@ -11,6 +11,7 @@ import Foundation
 struct Block {
 	let hash: String
 	let previousBlockHash: String
+	var transactions: [Transaction]
 	
 	func generateHash() -> String {
 		return NSUUID().uuidString.replacingOccurrences(of: "-", with: "")
