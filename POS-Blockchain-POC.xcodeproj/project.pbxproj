@@ -14,6 +14,8 @@
 		7A1A0A8E22BEC5B900E29EBC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A1A0A8C22BEC5B900E29EBC /* LaunchScreen.storyboard */; };
 		7A1A0A9922BEC5B900E29EBC /* POS_Blockchain_POCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0A9822BEC5B900E29EBC /* POS_Blockchain_POCTests.swift */; };
 		7A1A0AA522BECBA200E29EBC /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AA422BECBA200E29EBC /* Block.swift */; };
+		7A1A0AA722BECF0700E29EBC /* Blockchain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AA622BECF0700E29EBC /* Blockchain.swift */; };
+		7A1A0AA922BED05B00E29EBC /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AA822BED05B00E29EBC /* Transaction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 		7A1A0A9822BEC5B900E29EBC /* POS_Blockchain_POCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POS_Blockchain_POCTests.swift; sourceTree = "<group>"; };
 		7A1A0A9A22BEC5B900E29EBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A1A0AA422BECBA200E29EBC /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
+		7A1A0AA622BECF0700E29EBC /* Blockchain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blockchain.swift; sourceTree = "<group>"; };
+		7A1A0AA822BED05B00E29EBC /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 			isa = PBXGroup;
 			children = (
 				7A1A0AA422BECBA200E29EBC /* Block.swift */,
+				7A1A0AA622BECF0700E29EBC /* Blockchain.swift */,
+				7A1A0AA822BED05B00E29EBC /* Transaction.swift */,
 			);
 			name = Blockchain;
 			sourceTree = "<group>";
@@ -209,8 +215,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A1A0AA522BECBA200E29EBC /* Block.swift in Sources */,
+				7A1A0AA722BECF0700E29EBC /* Blockchain.swift in Sources */,
 				7A1A0A8622BEC5B600E29EBC /* ViewController.swift in Sources */,
 				7A1A0A8422BEC5B600E29EBC /* AppDelegate.swift in Sources */,
+				7A1A0AA922BED05B00E29EBC /* Transaction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
