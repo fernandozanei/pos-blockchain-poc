@@ -13,6 +13,7 @@
 		7A1A0A8B22BEC5B900E29EBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A1A0A8A22BEC5B900E29EBC /* Assets.xcassets */; };
 		7A1A0A8E22BEC5B900E29EBC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A1A0A8C22BEC5B900E29EBC /* LaunchScreen.storyboard */; };
 		7A1A0A9922BEC5B900E29EBC /* POS_Blockchain_POCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0A9822BEC5B900E29EBC /* POS_Blockchain_POCTests.swift */; };
+		7A1A0AA522BECBA200E29EBC /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AA422BECBA200E29EBC /* Block.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		7A1A0A9422BEC5B900E29EBC /* POS-Blockchain-POCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "POS-Blockchain-POCTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A1A0A9822BEC5B900E29EBC /* POS_Blockchain_POCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POS_Blockchain_POCTests.swift; sourceTree = "<group>"; };
 		7A1A0A9A22BEC5B900E29EBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7A1A0AA422BECBA200E29EBC /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				7A1A0A8322BEC5B600E29EBC /* AppDelegate.swift */,
+				7A1A0AA322BECB7800E29EBC /* Blockchain */,
 				7A1A0A8522BEC5B600E29EBC /* ViewController.swift */,
 				7A1A0A8722BEC5B600E29EBC /* Main.storyboard */,
 				7A1A0A8A22BEC5B900E29EBC /* Assets.xcassets */,
@@ -94,6 +97,14 @@
 				7A1A0A9A22BEC5B900E29EBC /* Info.plist */,
 			);
 			path = "POS-Blockchain-POCTests";
+			sourceTree = "<group>";
+		};
+		7A1A0AA322BECB7800E29EBC /* Blockchain */ = {
+			isa = PBXGroup;
+			children = (
+				7A1A0AA422BECBA200E29EBC /* Block.swift */,
+			);
+			name = Blockchain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,6 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A1A0AA522BECBA200E29EBC /* Block.swift in Sources */,
 				7A1A0A8622BEC5B600E29EBC /* ViewController.swift in Sources */,
 				7A1A0A8422BEC5B600E29EBC /* AppDelegate.swift in Sources */,
 			);
