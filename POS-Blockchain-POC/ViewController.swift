@@ -10,9 +10,47 @@ import UIKit
 
 class ViewController: UIViewController {
 
-	override func viewDidLoad() {
+    let serverButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Init BC", for: .normal)
+        button.backgroundColor = .red
+        button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(newBC), for: .touchUpInside)
+        return button
+    }()
+    
+    let clientButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Join BC", for: .normal)
+        button.backgroundColor = .red
+        button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(joinBC), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func newBC() {
+        bc = Blockchain()
+        // start multipeer browse
+        // segue login
+    }
+    
+    @objc func joinBC() {
+        // search and get bc from multipeer
+        //segue login
+    }
+
+    override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view.
+    
+        view.addSubview(serverButton)
+        serverButton.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 100, left: 100, bottom: 0, right: 0), size: .init(width: 200, height: 200))
+        
+        view.addSubview(clientButton)
+        clientButton.anchor(top: view.topAnchor, leading: serverButton.trailingAnchor, bottom: nil, trailing: nil, padding: .init(top: 100, left: 100, bottom: 0, right: 0), size: .init(width: 200, height: 200))
+        
+        print(uuiID)
+        _ = Genesis(nodeName: uuiID)
+
 	}
 
 
