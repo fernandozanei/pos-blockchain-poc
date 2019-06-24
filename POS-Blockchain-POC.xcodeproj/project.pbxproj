@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		07C8E06522BEDDB60039EF3D /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C8E06422BEDDB60039EF3D /* Extensions+UIView.swift */; };
-		07C8E06722BEEF6A0039EF3D /* GenesisBlockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C8E06622BEEF6A0039EF3D /* GenesisBlockController.swift */; };
+		07C8E06722BEEF6A0039EF3D /* Multipeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C8E06622BEEF6A0039EF3D /* Multipeer.swift */; };
 		7A1A0A8422BEC5B600E29EBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0A8322BEC5B600E29EBC /* AppDelegate.swift */; };
 		7A1A0A8622BEC5B600E29EBC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0A8522BEC5B600E29EBC /* ViewController.swift */; };
 		7A1A0A8922BEC5B600E29EBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A1A0A8722BEC5B600E29EBC /* Main.storyboard */; };
@@ -32,7 +32,7 @@
 
 /* Begin PBXFileReference section */
 		07C8E06422BEDDB60039EF3D /* Extensions+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
-		07C8E06622BEEF6A0039EF3D /* GenesisBlockController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenesisBlockController.swift; sourceTree = "<group>"; };
+		07C8E06622BEEF6A0039EF3D /* Multipeer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Multipeer.swift; sourceTree = "<group>"; };
 		7A1A0A8022BEC5B600E29EBC /* POS-Blockchain-POC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "POS-Blockchain-POC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A1A0A8322BEC5B600E29EBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A1A0A8522BEC5B600E29EBC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +90,7 @@
 				7A1A0A8322BEC5B600E29EBC /* AppDelegate.swift */,
 				7A1A0AA322BECB7800E29EBC /* Blockchain */,
 				7A1A0A8522BEC5B600E29EBC /* ViewController.swift */,
+				7A1A0AAA22C1705A00E29EBC /* Networking */,
 				7A1A0A8722BEC5B600E29EBC /* Main.storyboard */,
 				07C8E06422BEDDB60039EF3D /* Extensions+UIView.swift */,
 				7A1A0A8A22BEC5B900E29EBC /* Assets.xcassets */,
@@ -114,9 +115,16 @@
 				7A1A0AA422BECBA200E29EBC /* Block.swift */,
 				7A1A0AA622BECF0700E29EBC /* Blockchain.swift */,
 				7A1A0AA822BED05B00E29EBC /* Transaction.swift */,
-				07C8E06622BEEF6A0039EF3D /* GenesisBlockController.swift */,
 			);
 			name = Blockchain;
+			sourceTree = "<group>";
+		};
+		7A1A0AAA22C1705A00E29EBC /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				07C8E06622BEEF6A0039EF3D /* Multipeer.swift */,
+			);
+			name = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,7 +228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07C8E06722BEEF6A0039EF3D /* GenesisBlockController.swift in Sources */,
+				07C8E06722BEEF6A0039EF3D /* Multipeer.swift in Sources */,
 				7A1A0AA522BECBA200E29EBC /* Block.swift in Sources */,
 				7A1A0AA722BECF0700E29EBC /* Blockchain.swift in Sources */,
 				07C8E06522BEDDB60039EF3D /* Extensions+UIView.swift in Sources */,
