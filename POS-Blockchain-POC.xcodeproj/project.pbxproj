@@ -19,6 +19,7 @@
 		7A1A0AAD22C170FD00E29EBC /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AAC22C170FD00E29EBC /* Operators.swift */; };
 		7A1A0AAF22C1713400E29EBC /* FreeFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AAE22C1713400E29EBC /* FreeFunctions.swift */; };
 		7A1A0AB122C171E200E29EBC /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AB022C171E200E29EBC /* Protocols.swift */; };
+		7A1A0AB522C1728E00E29EBC /* TempTransactionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AB422C1728E00E29EBC /* TempTransactionTypes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		7A1A0AAC22C170FD00E29EBC /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 		7A1A0AAE22C1713400E29EBC /* FreeFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeFunctions.swift; sourceTree = "<group>"; };
 		7A1A0AB022C171E200E29EBC /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		7A1A0AB422C1728E00E29EBC /* TempTransactionTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempTransactionTypes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +93,7 @@
 			children = (
 				7A1A0A8322BEC5B600E29EBC /* AppDelegate.swift */,
 				7A1A0AA322BECB7800E29EBC /* Blockchain */,
-				7A1A0A8522BEC5B600E29EBC /* ViewController.swift */,
+				7A1A0AB322C1726F00E29EBC /* ViewControllers */,
 				7A1A0AAB22C170DA00E29EBC /* Utilities */,
 				7A1A0AAA22C1705A00E29EBC /* Networking */,
 				7A1A0A8722BEC5B600E29EBC /* Main.storyboard */,
@@ -133,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				7A1A0AAC22C170FD00E29EBC /* Operators.swift */,
+				7A1A0AB422C1728E00E29EBC /* TempTransactionTypes.swift */,
 				7A1A0AAE22C1713400E29EBC /* FreeFunctions.swift */,
 			);
 			name = Utilities;
@@ -144,6 +147,14 @@
 				07C8E06422BEDDB60039EF3D /* Extensions+UIView.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		7A1A0AB322C1726F00E29EBC /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				7A1A0A8522BEC5B600E29EBC /* ViewController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A1A0AB522C1728E00E29EBC /* TempTransactionTypes.swift in Sources */,
 				07C8E06722BEEF6A0039EF3D /* Multipeer.swift in Sources */,
 				7A1A0AAF22C1713400E29EBC /* FreeFunctions.swift in Sources */,
 				7A1A0AAD22C170FD00E29EBC /* Operators.swift in Sources */,
