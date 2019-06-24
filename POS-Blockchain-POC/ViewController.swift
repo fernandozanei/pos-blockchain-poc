@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     }()
     
     @objc func newBC() {
-        bc = Blockchain()
+//        bc = Blockchain()
         // start multipeer browse
         // segue login
     }

@@ -6,8 +6,3 @@
 //  Copyright © 2019 Jonathan Oliveira. All rights reserved.
 //
 
-import Foundation
-
-struct Blockchain {
-	var chain = [Block]()
-}

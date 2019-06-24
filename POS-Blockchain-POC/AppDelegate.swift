@@ -8,7 +8,7 @@
 
 import UIKit
 
-var bc: Blockchain!
+//var bc: Blockchain!
 var uuiID = NSUUID().uuidString
 
 @UIApplicationMain
