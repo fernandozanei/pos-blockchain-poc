@@ -8,8 +8,7 @@
 
 import UIKit
 
-//var bc: Blockchain!
-var uuiID = NSUUID().uuidString
+var blockchain = Blockchain()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

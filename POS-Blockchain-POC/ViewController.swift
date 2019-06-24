@@ -47,10 +47,44 @@ class ViewController: UIViewController {
         
         view.addSubview(clientButton)
         clientButton.anchor(top: view.topAnchor, leading: serverButton.trailingAnchor, bottom: nil, trailing: nil, padding: .init(top: 100, left: 100, bottom: 0, right: 0), size: .init(width: 200, height: 200))
-        
-        print(uuiID)
-        _ = Genesis(nodeName: uuiID)
+		
+		let nodeUUID = NSUUID().uuidString
+        print(nodeUUID)
+        _ = Genesis(nodeName: nodeUUID)
+		
+		testingBlockchain()
 
+	}
+	
+	func testingBlockchain() {
+		let nachos = MenuItem(name: "Nachos", price: 12.99)
+		let manager = Staff(name: "Jon", role: .admin)
+		let loginAdmin = StaffAction(staff: manager, action: .login)
+		
+		let (b1_parent_hash, b1_hash) = blockchain.mineBlockWith([nachos, loginAdmin])
+		print("<BK Testing> block 1 parent hash:", b1_parent_hash)
+		print("<BK Testing> block 1 hash:", b1_hash)
+		
+		print("<BK Testing> -------")
+		print("<BK Testing> -------")
+		
+		let salad = MenuItem(name: "Salad", price: 5.99)
+		let (b2_parent_hash, b2_hash) = blockchain.mineBlockWith([salad]);
+		print("<BK Testing> block 2 parent hash:", b2_parent_hash)
+		print("<BK Testing> block 2 hash:", b2_hash)
+		
+		print("<BK Testing> -------")
+		print("<BK Testing> -------")
+		
+		let logoutAdmin = StaffAction(staff: manager, action: .logout)
+		let (b3_parent_hash, b3_hash) = blockchain.mineBlockWith([logoutAdmin])
+		print("<BK Testing> block 3 parent hash:", b3_parent_hash)
+		print("<BK Testing> block 3 hash:", b3_hash)
+		
+		print("<BK Testing> -------")
+		print("<BK Testing> -------")
+		
+		print("<BK Testing> blockchain size:", blockchain.size())
 	}
 
 
