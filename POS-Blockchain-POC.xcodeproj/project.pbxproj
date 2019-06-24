@@ -18,6 +18,7 @@
 		7A1A0AA522BECBA200E29EBC /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AA422BECBA200E29EBC /* Block.swift */; };
 		7A1A0AA722BECF0700E29EBC /* Blockchain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AA622BECF0700E29EBC /* Blockchain.swift */; };
 		7A1A0AA922BED05B00E29EBC /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AA822BED05B00E29EBC /* Transaction.swift */; };
+		7A1A0AAD22C170FD00E29EBC /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AAC22C170FD00E29EBC /* Operators.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		7A1A0AA422BECBA200E29EBC /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 		7A1A0AA622BECF0700E29EBC /* Blockchain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blockchain.swift; sourceTree = "<group>"; };
 		7A1A0AA822BED05B00E29EBC /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		7A1A0AAC22C170FD00E29EBC /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				7A1A0A8322BEC5B600E29EBC /* AppDelegate.swift */,
 				7A1A0AA322BECB7800E29EBC /* Blockchain */,
 				7A1A0A8522BEC5B600E29EBC /* ViewController.swift */,
+				7A1A0AAB22C170DA00E29EBC /* Utilities */,
 				7A1A0AAA22C1705A00E29EBC /* Networking */,
 				7A1A0A8722BEC5B600E29EBC /* Main.storyboard */,
 				07C8E06422BEDDB60039EF3D /* Extensions+UIView.swift */,
@@ -125,6 +128,14 @@
 				07C8E06622BEEF6A0039EF3D /* Multipeer.swift */,
 			);
 			name = Networking;
+			sourceTree = "<group>";
+		};
+		7A1A0AAB22C170DA00E29EBC /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				7A1A0AAC22C170FD00E29EBC /* Operators.swift */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07C8E06722BEEF6A0039EF3D /* Multipeer.swift in Sources */,
+				7A1A0AAD22C170FD00E29EBC /* Operators.swift in Sources */,
 				7A1A0AA522BECBA200E29EBC /* Block.swift in Sources */,
 				7A1A0AA722BECF0700E29EBC /* Blockchain.swift in Sources */,
 				07C8E06522BEDDB60039EF3D /* Extensions+UIView.swift in Sources */,
