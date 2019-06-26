@@ -8,16 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		07C8E06522BEDDB60039EF3D /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C8E06422BEDDB60039EF3D /* Extensions+UIView.swift */; };
-		07C8E06722BEEF6A0039EF3D /* GenesisBlockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C8E06622BEEF6A0039EF3D /* GenesisBlockController.swift */; };
+		07C8E06722BEEF6A0039EF3D /* Multipeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C8E06622BEEF6A0039EF3D /* Multipeer.swift */; };
 		7A1A0A8422BEC5B600E29EBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0A8322BEC5B600E29EBC /* AppDelegate.swift */; };
 		7A1A0A8622BEC5B600E29EBC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0A8522BEC5B600E29EBC /* ViewController.swift */; };
 		7A1A0A8922BEC5B600E29EBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A1A0A8722BEC5B600E29EBC /* Main.storyboard */; };
 		7A1A0A8B22BEC5B900E29EBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A1A0A8A22BEC5B900E29EBC /* Assets.xcassets */; };
 		7A1A0A8E22BEC5B900E29EBC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A1A0A8C22BEC5B900E29EBC /* LaunchScreen.storyboard */; };
 		7A1A0A9922BEC5B900E29EBC /* POS_Blockchain_POCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0A9822BEC5B900E29EBC /* POS_Blockchain_POCTests.swift */; };
-		7A1A0AA522BECBA200E29EBC /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AA422BECBA200E29EBC /* Block.swift */; };
 		7A1A0AA722BECF0700E29EBC /* Blockchain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AA622BECF0700E29EBC /* Blockchain.swift */; };
-		7A1A0AA922BED05B00E29EBC /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AA822BED05B00E29EBC /* Transaction.swift */; };
+		7A1A0AAD22C170FD00E29EBC /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AAC22C170FD00E29EBC /* Operators.swift */; };
+		7A1A0AAF22C1713400E29EBC /* FreeFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AAE22C1713400E29EBC /* FreeFunctions.swift */; };
+		7A1A0AB122C171E200E29EBC /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AB022C171E200E29EBC /* Protocols.swift */; };
+		7A1A0AB522C1728E00E29EBC /* TempTransactionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AB422C1728E00E29EBC /* TempTransactionTypes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,7 +34,7 @@
 
 /* Begin PBXFileReference section */
 		07C8E06422BEDDB60039EF3D /* Extensions+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
-		07C8E06622BEEF6A0039EF3D /* GenesisBlockController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenesisBlockController.swift; sourceTree = "<group>"; };
+		07C8E06622BEEF6A0039EF3D /* Multipeer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Multipeer.swift; sourceTree = "<group>"; };
 		7A1A0A8022BEC5B600E29EBC /* POS-Blockchain-POC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "POS-Blockchain-POC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A1A0A8322BEC5B600E29EBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A1A0A8522BEC5B600E29EBC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -43,9 +45,11 @@
 		7A1A0A9422BEC5B900E29EBC /* POS-Blockchain-POCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "POS-Blockchain-POCTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A1A0A9822BEC5B900E29EBC /* POS_Blockchain_POCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POS_Blockchain_POCTests.swift; sourceTree = "<group>"; };
 		7A1A0A9A22BEC5B900E29EBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7A1A0AA422BECBA200E29EBC /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 		7A1A0AA622BECF0700E29EBC /* Blockchain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blockchain.swift; sourceTree = "<group>"; };
-		7A1A0AA822BED05B00E29EBC /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		7A1A0AAC22C170FD00E29EBC /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
+		7A1A0AAE22C1713400E29EBC /* FreeFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeFunctions.swift; sourceTree = "<group>"; };
+		7A1A0AB022C171E200E29EBC /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		7A1A0AB422C1728E00E29EBC /* TempTransactionTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempTransactionTypes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,9 +93,11 @@
 			children = (
 				7A1A0A8322BEC5B600E29EBC /* AppDelegate.swift */,
 				7A1A0AA322BECB7800E29EBC /* Blockchain */,
-				7A1A0A8522BEC5B600E29EBC /* ViewController.swift */,
+				7A1A0AB322C1726F00E29EBC /* ViewControllers */,
+				7A1A0AAB22C170DA00E29EBC /* Utilities */,
+				7A1A0AAA22C1705A00E29EBC /* Networking */,
 				7A1A0A8722BEC5B600E29EBC /* Main.storyboard */,
-				07C8E06422BEDDB60039EF3D /* Extensions+UIView.swift */,
+				7A1A0AB222C1722D00E29EBC /* Extensions */,
 				7A1A0A8A22BEC5B900E29EBC /* Assets.xcassets */,
 				7A1A0A8C22BEC5B900E29EBC /* LaunchScreen.storyboard */,
 				7A1A0A8F22BEC5B900E29EBC /* Info.plist */,
@@ -111,12 +117,44 @@
 		7A1A0AA322BECB7800E29EBC /* Blockchain */ = {
 			isa = PBXGroup;
 			children = (
-				7A1A0AA422BECBA200E29EBC /* Block.swift */,
 				7A1A0AA622BECF0700E29EBC /* Blockchain.swift */,
-				7A1A0AA822BED05B00E29EBC /* Transaction.swift */,
-				07C8E06622BEEF6A0039EF3D /* GenesisBlockController.swift */,
+				7A1A0AB022C171E200E29EBC /* Protocols.swift */,
 			);
 			name = Blockchain;
+			sourceTree = "<group>";
+		};
+		7A1A0AAA22C1705A00E29EBC /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				07C8E06622BEEF6A0039EF3D /* Multipeer.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		7A1A0AAB22C170DA00E29EBC /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				7A1A0AAC22C170FD00E29EBC /* Operators.swift */,
+				7A1A0AB422C1728E00E29EBC /* TempTransactionTypes.swift */,
+				7A1A0AAE22C1713400E29EBC /* FreeFunctions.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		7A1A0AB222C1722D00E29EBC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				07C8E06422BEDDB60039EF3D /* Extensions+UIView.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		7A1A0AB322C1726F00E29EBC /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				7A1A0A8522BEC5B600E29EBC /* ViewController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,13 +258,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07C8E06722BEEF6A0039EF3D /* GenesisBlockController.swift in Sources */,
-				7A1A0AA522BECBA200E29EBC /* Block.swift in Sources */,
+				7A1A0AB522C1728E00E29EBC /* TempTransactionTypes.swift in Sources */,
+				07C8E06722BEEF6A0039EF3D /* Multipeer.swift in Sources */,
+				7A1A0AAF22C1713400E29EBC /* FreeFunctions.swift in Sources */,
+				7A1A0AAD22C170FD00E29EBC /* Operators.swift in Sources */,
 				7A1A0AA722BECF0700E29EBC /* Blockchain.swift in Sources */,
 				07C8E06522BEDDB60039EF3D /* Extensions+UIView.swift in Sources */,
 				7A1A0A8622BEC5B600E29EBC /* ViewController.swift in Sources */,
 				7A1A0A8422BEC5B600E29EBC /* AppDelegate.swift in Sources */,
-				7A1A0AA922BED05B00E29EBC /* Transaction.swift in Sources */,
+				7A1A0AB122C171E200E29EBC /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
