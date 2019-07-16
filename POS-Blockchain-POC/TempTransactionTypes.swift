@@ -7,6 +7,7 @@
 //
 
 struct MenuItem: Transaction, Hashable {
+	let type: TransactionType = .menu_item
 	let name: String
 	let price: Double
 	
@@ -23,6 +24,7 @@ struct Staff: Hashable {
 
 struct StaffAction: Transaction, Hashable {
 	enum Action { case login, logout }
+	let type: TransactionType = .staff_action
 	let staff: Staff
 	let action: Action
 	

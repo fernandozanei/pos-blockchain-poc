@@ -7,7 +7,13 @@
 //
 
 struct Blockchain {
+	
 	private var blockchain: [Block] = []
+	
+	private func generateBlock(_ ts: [Transaction]) -> Block {
+		let previousHash = blockchain.count > 0 ? blockchain.last!.blockHash : 0
+		return Block(transactions: ts, parentHash: previousHash)
+	}
 	
 	mutating func mineBlockWith(_ ts: [Transaction]) -> (Int, Int) {
 		let block = generateBlock(ts)
@@ -15,13 +21,12 @@ struct Blockchain {
 		return (block.parentHash, block.blockHash)
 	}
 	
-	private func generateBlock(_ ts: [Transaction]) -> Block {
-		let previousHash = blockchain.count > 0 ? blockchain.last!.blockHash : 0
-		return Block(transactions: ts, parentHash: previousHash)
-	}
-	
 	func size() -> Int {
 		return blockchain.count
+	}
+	
+	func transactionsOf(type: TransactionType) -> [Transaction] {
+		return blockchain |> flatMap { $0.transactions } >>> filter { $0.type == type }
 	}
 }
 
@@ -42,4 +47,9 @@ extension Blockchain {
 		
 		func hash() -> Int { return blockHash }
 	}
+}
+
+enum TransactionType {
+	case menu_item
+	case staff_action
 }
