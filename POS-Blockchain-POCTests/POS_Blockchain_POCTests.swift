@@ -35,7 +35,7 @@ class POS_Blockchain_POCTests: XCTestCase {
     func testCanGenerateChain() {
         let loginAdmin = StaffAction(staff: manager, action: .login)
         let (b1_parent_hash, b1_hash) = blockchain.mineBlockWith([nachos, loginAdmin])
-        let (b2_parent_hash, b2_hash) = blockchain.mineBlockWith([salad]);
+        let (b2_parent_hash, b2_hash) = blockchain.mineBlockWith([salad])
         let logoutAdmin = StaffAction(staff: manager, action: .logout)
         let (b3_parent_hash, b3_hash) = blockchain.mineBlockWith([logoutAdmin])
         XCTAssert(b1_parent_hash == 0)
@@ -47,9 +47,21 @@ class POS_Blockchain_POCTests: XCTestCase {
     func testCanCountBlocks() {
         let loginAdmin = StaffAction(staff: manager, action: .login)
         let _ = blockchain.mineBlockWith([nachos, loginAdmin])
-        let _ = blockchain.mineBlockWith([salad]);
+        let _ = blockchain.mineBlockWith([salad])
         let logoutAdmin = StaffAction(staff: manager, action: .logout)
         let _ = blockchain.mineBlockWith([logoutAdmin])
         XCTAssert(blockchain.size == 3)
+    }
+    
+    func testCanReadTransaction() {
+        let loginAdmin = StaffAction(staff: manager, action: .login)
+        let _ = blockchain.mineBlockWith([nachos, loginAdmin])
+        let _ = blockchain.mineBlockWith([salad])
+        let logoutAdmin = StaffAction(staff: manager, action: .logout)
+        let _ = blockchain.mineBlockWith([logoutAdmin])
+        let menuitem: MenuItem = blockchain.transactionsOf(type: .menu_item).compactMap(MenuItem.fromTransaction(_:)).first!
+        let staff_action: StaffAction = blockchain.transactionsOf(type: .staff_action).compactMap(StaffAction.fromTransaction(_:)).last!
+        XCTAssert(menuitem == nachos)
+        XCTAssert(staff_action == logoutAdmin)
     }
 }

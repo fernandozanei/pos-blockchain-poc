@@ -13,3 +13,10 @@ protocol Chainable {
 protocol Transaction: Chainable {
 	var type: TransactionType { get }
 }
+
+extension Transaction {
+    static func fromTransaction<T>(_ t: Transaction) -> T? {
+        guard let transaction = t as? T else { return nil }
+        return transaction
+    }
+}

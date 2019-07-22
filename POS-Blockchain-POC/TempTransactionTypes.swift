@@ -7,10 +7,11 @@
 //
 
 struct MenuItem: Transaction, Hashable {
+    
 	let type: TransactionType = .menu_item
 	let name: String
 	let price: Double
-	
+
 	func hash() -> Int {
 		return self.hashValue
 	}
