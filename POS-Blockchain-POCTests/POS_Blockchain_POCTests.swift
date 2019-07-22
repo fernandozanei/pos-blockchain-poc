@@ -10,25 +10,46 @@ import XCTest
 @testable import POS_Blockchain_POC
 
 class POS_Blockchain_POCTests: XCTestCase {
+    
+    var blockchain: Blockchain!
+    let nachos = MenuItem(name: "Nachos", price: 12.99)
+    let manager = Staff(name: "Jon", role: .admin)
+    let salad = MenuItem(name: "Salad", price: 5.99)
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        blockchain = Blockchain()
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
+    func testCanCreateGenesisBlock() {
+        let loginAdmin = StaffAction(staff: manager, action: .login)
+        let (b1_parent_hash, _) = blockchain.mineBlockWith([nachos, loginAdmin])
+        XCTAssert(b1_parent_hash == 0)
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testCanGenerateChain() {
+        let loginAdmin = StaffAction(staff: manager, action: .login)
+        let (b1_parent_hash, b1_hash) = blockchain.mineBlockWith([nachos, loginAdmin])
+        let (b2_parent_hash, b2_hash) = blockchain.mineBlockWith([salad]);
+        let logoutAdmin = StaffAction(staff: manager, action: .logout)
+        let (b3_parent_hash, b3_hash) = blockchain.mineBlockWith([logoutAdmin])
+        XCTAssert(b1_parent_hash == 0)
+        XCTAssert(b1_hash == b2_parent_hash)
+        XCTAssert(b2_hash == b3_parent_hash)
+        XCTAssert(b3_hash != b1_parent_hash && b3_hash != b1_hash && b3_hash != b1_hash)
     }
-
+    
+    func testCanCountBlocks() {
+        let loginAdmin = StaffAction(staff: manager, action: .login)
+        let _ = blockchain.mineBlockWith([nachos, loginAdmin])
+        let _ = blockchain.mineBlockWith([salad]);
+        let logoutAdmin = StaffAction(staff: manager, action: .logout)
+        let _ = blockchain.mineBlockWith([logoutAdmin])
+        XCTAssert(blockchain.size == 3)
+    }
 }

@@ -84,7 +84,7 @@ class ViewController: UIViewController {
 		print("<BK Testing> -------")
 		print("<BK Testing> -------")
 		
-		print("<BK Testing> blockchain size:", blockchain.size())
+		print("<BK Testing> blockchain size:", blockchain.size)
 		
 		let menuItems = blockchain.transactionsOf(type: .menu_item)
 		let staffActions = blockchain.transactionsOf(type: .staff_action)

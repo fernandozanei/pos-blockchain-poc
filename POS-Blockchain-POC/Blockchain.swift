@@ -9,6 +9,8 @@
 struct Blockchain {
 	
 	private var blockchain: [Block] = []
+    
+    var size: Int { return blockchain.count }
 	
 	private func generateBlock(_ ts: [Transaction]) -> Block {
 		let previousHash = blockchain.count > 0 ? blockchain.last!.blockHash : 0
@@ -19,10 +21,6 @@ struct Blockchain {
 		let block = generateBlock(ts)
 		blockchain.append(block)
 		return (block.parentHash, block.blockHash)
-	}
-	
-	func size() -> Int {
-		return blockchain.count
 	}
 	
 	func transactionsOf(type: TransactionType) -> [Transaction] {
