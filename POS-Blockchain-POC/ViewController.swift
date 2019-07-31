@@ -9,90 +9,87 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    let serverButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Init BC", for: .normal)
-        button.backgroundColor = .red
-        button.setTitleColor(.white, for: .normal)
-        button.addTarget(self, action: #selector(newBC), for: .touchUpInside)
-        return button
-    }()
     
-    let clientButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Join BC", for: .normal)
-        button.backgroundColor = .red
-        button.setTitleColor(.white, for: .normal)
-        button.addTarget(self, action: #selector(joinBC), for: .touchUpInside)
-        return button
-    }()
-    
-    @objc func newBC() {
-//        bc = Blockchain()
-        // start multipeer browse
-        // segue login
-    }
-    
-    @objc func joinBC() {
-        // search and get bc from multipeer
-        //segue login
-    }
+    private var table1: UIButton!
+    private var table2: UIButton!
+    private var table3: UIButton!
+    private var table4: UIButton!
 
     override func viewDidLoad() {
 		super.viewDidLoad()
-    
-        view.addSubview(serverButton)
-        serverButton.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 100, left: 100, bottom: 0, right: 0), size: .init(width: 200, height: 200))
         
-        view.addSubview(clientButton)
-        clientButton.anchor(top: view.topAnchor, leading: serverButton.trailingAnchor, bottom: nil, trailing: nil, padding: .init(top: 100, left: 100, bottom: 0, right: 0), size: .init(width: 200, height: 200))
+        table1 = button(with: "Table 1", selector: #selector(pressedAction(_:))) |> blackBackground
+        table2 = button(with: "Table 2", selector: #selector(pressedAction(_:))) |> blackBackground
+        table3 = button(with: "Table 3", selector: #selector(pressedAction(_:))) |> blackBackground
+        table4 = button(with: "Table 4", selector: #selector(pressedAction(_:))) |> blackBackground
+
+        let tableHeight: CGFloat = 250.0
+        let topStack = UIStackView(arrangedSubviews: [table1, table2])
+        topStack.distribution = .fillEqually
+        topStack.spacing = 24.0
+        let topStackTopDistance = (view.frame.size.height / 2) - tableHeight - (topStack.spacing / 2)
+        
+        let bottomStack = UIStackView(arrangedSubviews: [table3, table4])
+        bottomStack.distribution = .fillEqually
+        bottomStack.spacing = 24.0
+        
+        view.addSubview(topStack)
+        view.addSubview(bottomStack)
+        
+        topStack.translatesAutoresizingMaskIntoConstraints = false
+        bottomStack.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            topStack.topAnchor.constraint(equalTo: view.topAnchor, constant: topStackTopDistance),
+            topStack.widthAnchor.constraint(equalToConstant: tableHeight * 2 + topStack.spacing),
+            topStack.heightAnchor.constraint(equalToConstant: tableHeight),
+            topStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            bottomStack.topAnchor.constraint(equalTo: topStack.bottomAnchor, constant: bottomStack.spacing),
+            bottomStack.widthAnchor.constraint(equalTo: topStack.widthAnchor),
+            bottomStack.heightAnchor.constraint(equalTo: topStack.heightAnchor),
+            bottomStack.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            ])
 		
+/*
+         CODE RELATED TO MULTIPEER-CONNECTIVITY
 		let nodeUUID = NSUUID().uuidString
         print(nodeUUID)
         _ = Genesis(nodeName: nodeUUID)
-		
-		testingBlockchain()
-
+ */
 	}
-	
-	func testingBlockchain() {
-		let nachos = MenuItem(name: "Nachos", price: 12.99)
-		let manager = Staff(name: "Jon", role: .admin)
-		let loginAdmin = StaffAction(staff: manager, action: .login)
-		
-		let (b1_parent_hash, b1_hash) = blockchain.mineBlockWith([nachos, loginAdmin])
-		print("<BK Testing> block 1 parent hash:", b1_parent_hash)
-		print("<BK Testing> block 1 hash:", b1_hash)
-		
-		print("<BK Testing> -------")
-		print("<BK Testing> -------")
-		
-		let salad = MenuItem(name: "Salad", price: 5.99)
-		let (b2_parent_hash, b2_hash) = blockchain.mineBlockWith([salad]);
-		print("<BK Testing> block 2 parent hash:", b2_parent_hash)
-		print("<BK Testing> block 2 hash:", b2_hash)
-		
-		print("<BK Testing> -------")
-		print("<BK Testing> -------")
-		
-		let logoutAdmin = StaffAction(staff: manager, action: .logout)
-		let (b3_parent_hash, b3_hash) = blockchain.mineBlockWith([logoutAdmin])
-		print("<BK Testing> block 3 parent hash:", b3_parent_hash)
-		print("<BK Testing> block 3 hash:", b3_hash)
-		
-		print("<BK Testing> -------")
-		print("<BK Testing> -------")
-		
-		print("<BK Testing> blockchain size:", blockchain.size)
-		
-        let menuItems: [MenuItem] = blockchain.transactionsOf(type: .menu_item).compactMap(MenuItem.fromTransaction(_:))
-        let staffActions: [StaffAction] = blockchain.transactionsOf(type: .staff_action).compactMap(StaffAction.fromTransaction(_:))
-		
-		print("<BK Testing> \(menuItems.count) menu items", menuItems)
-		print("<BK Testing> \(staffActions.count) staff actions", staffActions)
-	}
+    
+    @objc func pressedAction(_ sender: UIButton!) {
+        let newColor: UIColor = sender.backgroundColor == .black ? .red : .black
+        sender.backgroundColor = newColor
+    }
+}
 
-
+private extension ViewController {
+    func button(with title: String, selector: Selector? = nil) -> UIButton {
+        let button = UIButton()
+        button.setTitle(title, for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        guard let selector = selector else { return button }
+        button.addTarget(self, action: selector, for: .touchUpInside)
+        return button
+    }
+    
+    private func blackBackground<T>(_ view: T) -> T where T: UIView {
+        view.backgroundColor = .black
+        return view
+    }
+    
+    private func redBackground<T>(_ view: T) -> T where T: UIView {
+        view.backgroundColor = .red
+        return view
+    }
+    
+    private func sized<T>(_ dimension: Double) -> (T) -> T where T: UIView {
+        return { (view: T) in
+            view.frame.size = CGSize(width: dimension, height: dimension)
+            return view
+        }
+    }
 }
 

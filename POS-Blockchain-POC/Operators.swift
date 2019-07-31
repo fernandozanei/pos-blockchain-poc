@@ -8,6 +8,7 @@
 
 precedencegroup FunctionApplication {
 	associativity: left
+    higherThan: AssignmentPrecedence
 }
 precedencegroup FunctionComposition {
 	associativity: left

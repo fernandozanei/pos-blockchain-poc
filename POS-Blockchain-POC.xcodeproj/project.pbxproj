@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07C8E06522BEDDB60039EF3D /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C8E06422BEDDB60039EF3D /* Extensions+UIView.swift */; };
 		07C8E06722BEEF6A0039EF3D /* Multipeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C8E06622BEEF6A0039EF3D /* Multipeer.swift */; };
 		7A1A0A8422BEC5B600E29EBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0A8322BEC5B600E29EBC /* AppDelegate.swift */; };
 		7A1A0A8622BEC5B600E29EBC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0A8522BEC5B600E29EBC /* ViewController.swift */; };
@@ -33,7 +32,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07C8E06422BEDDB60039EF3D /* Extensions+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
 		07C8E06622BEEF6A0039EF3D /* Multipeer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Multipeer.swift; sourceTree = "<group>"; };
 		7A1A0A8022BEC5B600E29EBC /* POS-Blockchain-POC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "POS-Blockchain-POC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A1A0A8322BEC5B600E29EBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -97,7 +95,6 @@
 				7A1A0AAB22C170DA00E29EBC /* Utilities */,
 				7A1A0AAA22C1705A00E29EBC /* Networking */,
 				7A1A0A8722BEC5B600E29EBC /* Main.storyboard */,
-				7A1A0AB222C1722D00E29EBC /* Extensions */,
 				7A1A0A8A22BEC5B900E29EBC /* Assets.xcassets */,
 				7A1A0A8C22BEC5B900E29EBC /* LaunchScreen.storyboard */,
 				7A1A0A8F22BEC5B900E29EBC /* Info.plist */,
@@ -139,14 +136,6 @@
 				7A1A0AAE22C1713400E29EBC /* FreeFunctions.swift */,
 			);
 			name = Utilities;
-			sourceTree = "<group>";
-		};
-		7A1A0AB222C1722D00E29EBC /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				07C8E06422BEDDB60039EF3D /* Extensions+UIView.swift */,
-			);
-			name = Extensions;
 			sourceTree = "<group>";
 		};
 		7A1A0AB322C1726F00E29EBC /* ViewControllers */ = {
@@ -263,7 +252,6 @@
 				7A1A0AAF22C1713400E29EBC /* FreeFunctions.swift in Sources */,
 				7A1A0AAD22C170FD00E29EBC /* Operators.swift in Sources */,
 				7A1A0AA722BECF0700E29EBC /* Blockchain.swift in Sources */,
-				07C8E06522BEDDB60039EF3D /* Extensions+UIView.swift in Sources */,
 				7A1A0A8622BEC5B600E29EBC /* ViewController.swift in Sources */,
 				7A1A0A8422BEC5B600E29EBC /* AppDelegate.swift in Sources */,
 				7A1A0AB122C171E200E29EBC /* Protocols.swift in Sources */,
