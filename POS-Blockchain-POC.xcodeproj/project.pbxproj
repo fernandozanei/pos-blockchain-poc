@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		07C8E06722BEEF6A0039EF3D /* Multipeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C8E06622BEEF6A0039EF3D /* Multipeer.swift */; };
+		337F29FD23222AA000C6A390 /* Swifter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 337F29FC23222AA000C6A390 /* Swifter.framework */; };
+		337F2A0023222CDB00C6A390 /* Swifter.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 337F29FF23222CDB00C6A390 /* Swifter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		337F2A042322302E00C6A390 /* PortMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 337F2A032322302E00C6A390 /* PortMapper.m */; };
 		7A1A0A8422BEC5B600E29EBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0A8322BEC5B600E29EBC /* AppDelegate.swift */; };
 		7A1A0A8622BEC5B600E29EBC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0A8522BEC5B600E29EBC /* ViewController.swift */; };
 		7A1A0A8922BEC5B600E29EBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A1A0A8722BEC5B600E29EBC /* Main.storyboard */; };
@@ -31,8 +34,26 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		337F29FE23222CAB00C6A390 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				337F2A0023222CDB00C6A390 /* Swifter.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		07C8E06622BEEF6A0039EF3D /* Multipeer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Multipeer.swift; sourceTree = "<group>"; };
+		337F29FC23222AA000C6A390 /* Swifter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swifter.framework; path = Carthage/Build/iOS/Swifter.framework; sourceTree = "<group>"; };
+		337F29FF23222CDB00C6A390 /* Swifter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swifter.framework; path = Carthage/Build/iOS/Swifter.framework; sourceTree = "<group>"; };
+		337F2A012322302E00C6A390 /* POS-Blockchain-POC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "POS-Blockchain-POC-Bridging-Header.h"; sourceTree = "<group>"; };
+		337F2A022322302E00C6A390 /* PortMapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PortMapper.h; sourceTree = "<group>"; };
+		337F2A032322302E00C6A390 /* PortMapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PortMapper.m; sourceTree = "<group>"; };
 		7A1A0A8022BEC5B600E29EBC /* POS-Blockchain-POC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "POS-Blockchain-POC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A1A0A8322BEC5B600E29EBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A1A0A8522BEC5B600E29EBC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				337F29FD23222AA000C6A390 /* Swifter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,12 +90,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		337F29FB23222AA000C6A390 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				337F29FC23222AA000C6A390 /* Swifter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7A1A0A7722BEC5B600E29EBC = {
 			isa = PBXGroup;
 			children = (
+				337F29FF23222CDB00C6A390 /* Swifter.framework */,
 				7A1A0A8222BEC5B600E29EBC /* POS-Blockchain-POC */,
 				7A1A0A9722BEC5B900E29EBC /* POS-Blockchain-POCTests */,
 				7A1A0A8122BEC5B600E29EBC /* Products */,
+				337F29FB23222AA000C6A390 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,6 +122,8 @@
 			isa = PBXGroup;
 			children = (
 				7A1A0A8322BEC5B600E29EBC /* AppDelegate.swift */,
+				337F2A022322302E00C6A390 /* PortMapper.h */,
+				337F2A032322302E00C6A390 /* PortMapper.m */,
 				7A1A0AA322BECB7800E29EBC /* Blockchain */,
 				7A1A0AB322C1726F00E29EBC /* ViewControllers */,
 				7A1A0AAB22C170DA00E29EBC /* Utilities */,
@@ -98,6 +132,7 @@
 				7A1A0A8A22BEC5B900E29EBC /* Assets.xcassets */,
 				7A1A0A8C22BEC5B900E29EBC /* LaunchScreen.storyboard */,
 				7A1A0A8F22BEC5B900E29EBC /* Info.plist */,
+				337F2A012322302E00C6A390 /* POS-Blockchain-POC-Bridging-Header.h */,
 			);
 			path = "POS-Blockchain-POC";
 			sourceTree = "<group>";
@@ -156,6 +191,7 @@
 				7A1A0A7C22BEC5B600E29EBC /* Sources */,
 				7A1A0A7D22BEC5B600E29EBC /* Frameworks */,
 				7A1A0A7E22BEC5B600E29EBC /* Resources */,
+				337F29FE23222CAB00C6A390 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -196,6 +232,7 @@
 				TargetAttributes = {
 					7A1A0A7F22BEC5B600E29EBC = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
 					};
 					7A1A0A9322BEC5B900E29EBC = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -253,6 +290,7 @@
 				7A1A0AAD22C170FD00E29EBC /* Operators.swift in Sources */,
 				7A1A0AA722BECF0700E29EBC /* Blockchain.swift in Sources */,
 				7A1A0A8622BEC5B600E29EBC /* ViewController.swift in Sources */,
+				337F2A042322302E00C6A390 /* PortMapper.m in Sources */,
 				7A1A0A8422BEC5B600E29EBC /* AppDelegate.swift in Sources */,
 				7A1A0AB122C171E200E29EBC /* Protocols.swift in Sources */,
 			);
@@ -416,8 +454,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J29799KDDY;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "POS-Blockchain-POC/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -425,6 +468,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jonathanoliveira.POS-Blockchain-POCC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "POS-Blockchain-POC/POS-Blockchain-POC-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -434,8 +479,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J29799KDDY;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "POS-Blockchain-POC/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -443,6 +493,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jonathanoliveira.POS-Blockchain-POCC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "POS-Blockchain-POC/POS-Blockchain-POC-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

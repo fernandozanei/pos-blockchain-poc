@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
 		super.viewDidLoad()
         
-        table1 = button(with: "Table 1", id: 1, selector: #selector(pressedAction(_:))) |> blackBackground
+        table1 = button(with: PortMapper.localAddress() + ":\(try! server!.port())", id: 1, selector: #selector(pressedAction(_:))) |> blackBackground
         table2 = button(with: "Table 2", id: 2, selector: #selector(pressedAction(_:))) |> blackBackground
         table3 = button(with: "Table 3", id: 3, selector: #selector(pressedAction(_:))) |> blackBackground
         table4 = button(with: "Table 4", id: 4, selector: #selector(pressedAction(_:))) |> blackBackground
@@ -59,6 +59,11 @@ class ViewController: UIViewController {
  */
         let registeredTables = blockchain.listen(for: TableState.self, with: tableListener)
         registeredTables.forEach { tableListener($0) }
+//        if let server = server {
+//            HttpRequest()
+//            server.dispatch(URLRequest(url: URL(string: "192.168.0.15:1337/")!))
+////            print(try! server.port())
+//        }
 	}
     
     @objc func pressedAction(_ sender: UIButton!) {
@@ -67,6 +72,36 @@ class ViewController: UIViewController {
 //        let newColor: UIColor = table.backgroundColor == .black ? .red : .black
         blockchain.add(transaction: TableState(number: table.id, isOpen: isOpen))
 //        table.backgroundColor = newColor
+
+        let session: URLSession = URLSession(configuration: URLSessionConfiguration.default)
+//        let defaultLocalhost = URL(string: "http://192.168.0.15:1338")!
+//        session.dataTask(with: defaultLocalhost.appendingPathComponent("/ping")) { data, response, error in
+//            print(data)
+//            print(response)
+//            print(error)
+//        }.resume()
+        let defaultLocalhost = URL(string: "http://192.168.0.15:1338")!
+        let data = "Small data".data(using: .utf8)
+        var request = URLRequest(url: defaultLocalhost.appendingPathComponent("/test"))
+        request.httpMethod = "POST"
+        let countString = String(data!.count)
+        request.allHTTPHeaderFields = ["Content-Type": "text/plain", "Content-Length": countString]
+        //        request.allHTTPHeaderFields = ["Content-Type": "text/plain"]
+//        print(countString)
+        request.httpBodyStream = InputStream(data: data!)
+        /*
+         [response setHeaderField:@"Content-Length" value:contentLengthStr];
+         NSString *contentTypeStr = [NSString stringWithFormat:@"multipart/byteranges; boundary=%@", ranges_boundry];
+         [response setHeaderField:@"Content-Type" value:contentTypeStr];
+         */
+        //        request.httpBodyStream
+        let uploadTask = session.uploadTask(withStreamedRequest: request)
+        uploadTask.resume()
+//        session.dataUploadTask(with: defaultLocalhost.appendingPathComponent("/ping")) { data, response, error in
+//            print(data)
+//            print(response)
+//            print(error)
+//            }.resume()
     }
 
     func tableListener(_ transaction: Transaction) {
