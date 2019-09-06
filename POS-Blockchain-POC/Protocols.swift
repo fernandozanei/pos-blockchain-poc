@@ -12,6 +12,7 @@ protocol Chainable {
 
 protocol Transaction: Chainable {
 	var type: TransactionType { get }
+    static func stype() -> TransactionType
 }
 
 extension Transaction {

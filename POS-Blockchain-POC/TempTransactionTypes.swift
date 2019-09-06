@@ -7,7 +7,6 @@
 //
 
 struct MenuItem: Transaction, Hashable {
-    
 	let type: TransactionType = .menu_item
 	let name: String
 	let price: Double
@@ -15,6 +14,10 @@ struct MenuItem: Transaction, Hashable {
 	func hash() -> Int {
 		return self.hashValue
 	}
+
+    static func stype() -> TransactionType {
+        return .menu_item
+    }
 }
 
 struct Staff: Hashable {
@@ -32,4 +35,22 @@ struct StaffAction: Transaction, Hashable {
 	func hash() -> Int {
 		return self.hashValue
 	}
+
+    static func stype() -> TransactionType {
+        return .staff_action
+    }
+}
+
+struct TableState: Transaction, Hashable {
+    let type: TransactionType = .table_state
+    let number: Int
+    let isOpen: Bool
+    
+    func hash() -> Int {
+        return self.hashValue
+    }
+
+    static func stype() -> TransactionType {
+        return .table_state
+    }
 }

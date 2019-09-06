@@ -18,10 +18,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
 		super.viewDidLoad()
         
-        table1 = button(with: "Table 1", selector: #selector(pressedAction(_:))) |> blackBackground
-        table2 = button(with: "Table 2", selector: #selector(pressedAction(_:))) |> blackBackground
-        table3 = button(with: "Table 3", selector: #selector(pressedAction(_:))) |> blackBackground
-        table4 = button(with: "Table 4", selector: #selector(pressedAction(_:))) |> blackBackground
+        table1 = button(with: "Table 1", id: 1, selector: #selector(pressedAction(_:))) |> blackBackground
+        table2 = button(with: "Table 2", id: 2, selector: #selector(pressedAction(_:))) |> blackBackground
+        table3 = button(with: "Table 3", id: 3, selector: #selector(pressedAction(_:))) |> blackBackground
+        table4 = button(with: "Table 4", id: 4, selector: #selector(pressedAction(_:))) |> blackBackground
 
         let tableHeight: CGFloat = 250.0
         let topStack = UIStackView(arrangedSubviews: [table1, table2])
@@ -57,24 +57,47 @@ class ViewController: UIViewController {
         print(nodeUUID)
         _ = Genesis(nodeName: nodeUUID)
  */
+        let registeredTables = blockchain.listen(for: TableState.self, with: tableListener)
+        registeredTables.forEach { tableListener($0) }
 	}
     
     @objc func pressedAction(_ sender: UIButton!) {
-        let newColor: UIColor = sender.backgroundColor == .black ? .red : .black
-        sender.backgroundColor = newColor
+        guard let table = sender as? Table else { return }
+        let isOpen = table.backgroundColor == .black ? true : false
+//        let newColor: UIColor = table.backgroundColor == .black ? .red : .black
+        blockchain.add(transaction: TableState(number: table.id, isOpen: isOpen))
+//        table.backgroundColor = newColor
+    }
+
+    func tableListener(_ transaction: Transaction) {
+        guard let table = transaction as? TableState else { return }
+        switch table.number {
+        case 1: table1.backgroundColor = table.isOpen ? .red : .black
+        case 2: table2.backgroundColor = table.isOpen ? .red : .black
+        case 3: table3.backgroundColor = table.isOpen ? .red : .black
+        default: table4.backgroundColor = table.isOpen ? .red : .black
+        }
     }
 }
 
 private extension ViewController {
-    func button(with title: String, selector: Selector? = nil) -> UIButton {
-        let button = UIButton()
+//    func button(with title: String, selector: Selector? = nil) -> UIButton {
+//        let button = UIButton()
+//        button.setTitle(title, for: .normal)
+//        button.setTitleColor(.white, for: .normal)
+//        guard let selector = selector else { return button }
+//        button.addTarget(self, action: selector, for: .touchUpInside)
+//        return button
+//    }
+    func button(with title: String, id: Int, selector: Selector? = nil) -> Table {
+        let button = Table(id: id, name: title)
         button.setTitle(title, for: .normal)
         button.setTitleColor(.white, for: .normal)
         guard let selector = selector else { return button }
         button.addTarget(self, action: selector, for: .touchUpInside)
         return button
     }
-    
+
     private func blackBackground<T>(_ view: T) -> T where T: UIView {
         view.backgroundColor = .black
         return view
@@ -93,3 +116,17 @@ private extension ViewController {
     }
 }
 
+class Table: UIButton {
+    let name: String
+    let id: Int
+
+    init(id: Int, name: String) {
+        self.id = id
+        self.name = name
+        super.init(frame: .zero)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}

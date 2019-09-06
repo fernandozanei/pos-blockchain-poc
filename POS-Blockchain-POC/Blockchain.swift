@@ -9,6 +9,7 @@
 struct Blockchain {
 	
 	private var blockchain: [Block] = []
+    private var listeners: [(TransactionType, (Transaction) -> Void)] = []
     
     var size: Int { return blockchain.count }
 	
@@ -20,12 +21,29 @@ struct Blockchain {
 	mutating func mineBlockWith(_ ts: [Transaction]) -> (Int, Int) {
 		let block = generateBlock(ts)
 		blockchain.append(block)
+        notifyListeners(with: block)
 		return (block.parentHash, block.blockHash)
 	}
 	
 	func transactionsOf(type: TransactionType) -> [Transaction] {
 		return blockchain |> flatMap { $0.transactions } >>> filter { $0.type == type }
 	}
+
+    mutating func add(transaction: Transaction) {
+        let _ = mineBlockWith([transaction])
+    }
+
+    mutating func listen<A: Transaction>(for tt: A.Type, with listener: @escaping (Transaction) -> Void) -> [A] {
+        listeners.append((tt.stype(), listener))
+        return transactionsOf(type: tt.stype()).compactMap(A.fromTransaction(_:))
+    }
+
+    private func notifyListeners(with block: Block) {
+        block.transactions.forEach { transaction in
+            let liveListeners = listeners.filter{ $0.0 == transaction.type }
+            liveListeners.forEach{ $0.1(transaction) }
+        }
+    }
 }
 
 extension Blockchain {
@@ -50,4 +68,5 @@ extension Blockchain {
 enum TransactionType {
 	case menu_item
 	case staff_action
+    case table_state
 }
