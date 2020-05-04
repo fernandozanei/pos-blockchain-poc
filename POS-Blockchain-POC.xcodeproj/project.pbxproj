@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07C8E06722BEEF6A0039EF3D /* Multipeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C8E06622BEEF6A0039EF3D /* Multipeer.swift */; };
 		337F29FD23222AA000C6A390 /* Swifter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 337F29FC23222AA000C6A390 /* Swifter.framework */; };
 		337F2A0023222CDB00C6A390 /* Swifter.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 337F29FF23222CDB00C6A390 /* Swifter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		337F2A042322302E00C6A390 /* PortMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 337F2A032322302E00C6A390 /* PortMapper.m */; };
@@ -48,7 +47,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07C8E06622BEEF6A0039EF3D /* Multipeer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Multipeer.swift; sourceTree = "<group>"; };
 		337F29FC23222AA000C6A390 /* Swifter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swifter.framework; path = Carthage/Build/iOS/Swifter.framework; sourceTree = "<group>"; };
 		337F29FF23222CDB00C6A390 /* Swifter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swifter.framework; path = Carthage/Build/iOS/Swifter.framework; sourceTree = "<group>"; };
 		337F2A012322302E00C6A390 /* POS-Blockchain-POC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "POS-Blockchain-POC-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -127,7 +125,6 @@
 				7A1A0AA322BECB7800E29EBC /* Blockchain */,
 				7A1A0AB322C1726F00E29EBC /* ViewControllers */,
 				7A1A0AAB22C170DA00E29EBC /* Utilities */,
-				7A1A0AAA22C1705A00E29EBC /* Networking */,
 				7A1A0A8722BEC5B600E29EBC /* Main.storyboard */,
 				7A1A0A8A22BEC5B900E29EBC /* Assets.xcassets */,
 				7A1A0A8C22BEC5B900E29EBC /* LaunchScreen.storyboard */,
@@ -153,14 +150,6 @@
 				7A1A0AB022C171E200E29EBC /* Protocols.swift */,
 			);
 			name = Blockchain;
-			sourceTree = "<group>";
-		};
-		7A1A0AAA22C1705A00E29EBC /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				07C8E06622BEEF6A0039EF3D /* Multipeer.swift */,
-			);
-			name = Networking;
 			sourceTree = "<group>";
 		};
 		7A1A0AAB22C170DA00E29EBC /* Utilities */ = {
@@ -285,7 +274,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A1A0AB522C1728E00E29EBC /* TempTransactionTypes.swift in Sources */,
-				07C8E06722BEEF6A0039EF3D /* Multipeer.swift in Sources */,
 				7A1A0AAF22C1713400E29EBC /* FreeFunctions.swift in Sources */,
 				7A1A0AAD22C170FD00E29EBC /* Operators.swift in Sources */,
 				7A1A0AA722BECF0700E29EBC /* Blockchain.swift in Sources */,

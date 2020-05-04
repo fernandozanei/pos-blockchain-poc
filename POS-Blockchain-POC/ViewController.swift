@@ -50,62 +50,32 @@ class ViewController: UIViewController {
             bottomStack.heightAnchor.constraint(equalTo: topStack.heightAnchor),
             bottomStack.centerXAnchor.constraint(equalTo: view.centerXAnchor)
             ])
-		
-/*
-         CODE RELATED TO MULTIPEER-CONNECTIVITY
-		let nodeUUID = NSUUID().uuidString
-        print(nodeUUID)
-        _ = Genesis(nodeName: nodeUUID)
- */
+
         let registeredTables = blockchain.listen(for: TableState.self, with: tableListener)
         registeredTables.forEach { tableListener($0) }
-//        if let server = server {
-//            HttpRequest()
-//            server.dispatch(URLRequest(url: URL(string: "192.168.0.15:1337/")!))
-////            print(try! server.port())
-//        }
 	}
     
     @objc func pressedAction(_ sender: UIButton!) {
         guard let table = sender as? Table else { return }
+
         let isOpen = table.backgroundColor == .black ? true : false
-//        let newColor: UIColor = table.backgroundColor == .black ? .red : .black
         blockchain.add(transaction: TableState(number: table.id, isOpen: isOpen))
-//        table.backgroundColor = newColor
 
         let session: URLSession = URLSession(configuration: URLSessionConfiguration.default)
-//        let defaultLocalhost = URL(string: "http://192.168.0.15:1338")!
-//        session.dataTask(with: defaultLocalhost.appendingPathComponent("/ping")) { data, response, error in
-//            print(data)
-//            print(response)
-//            print(error)
-//        }.resume()
-        let defaultLocalhost = URL(string: "http://192.168.0.15:1338")!
+        let defaultLocalhost = URL(string: "http://192.168.0.14:1338")!
         let data = "Small data".data(using: .utf8)
         var request = URLRequest(url: defaultLocalhost.appendingPathComponent("/test"))
         request.httpMethod = "POST"
         let countString = String(data!.count)
         request.allHTTPHeaderFields = ["Content-Type": "text/plain", "Content-Length": countString]
-        //        request.allHTTPHeaderFields = ["Content-Type": "text/plain"]
-//        print(countString)
         request.httpBodyStream = InputStream(data: data!)
-        /*
-         [response setHeaderField:@"Content-Length" value:contentLengthStr];
-         NSString *contentTypeStr = [NSString stringWithFormat:@"multipart/byteranges; boundary=%@", ranges_boundry];
-         [response setHeaderField:@"Content-Type" value:contentTypeStr];
-         */
-        //        request.httpBodyStream
         let uploadTask = session.uploadTask(withStreamedRequest: request)
         uploadTask.resume()
-//        session.dataUploadTask(with: defaultLocalhost.appendingPathComponent("/ping")) { data, response, error in
-//            print(data)
-//            print(response)
-//            print(error)
-//            }.resume()
     }
 
     func tableListener(_ transaction: Transaction) {
         guard let table = transaction as? TableState else { return }
+
         switch table.number {
         case 1: table1.backgroundColor = table.isOpen ? .red : .black
         case 2: table2.backgroundColor = table.isOpen ? .red : .black
@@ -116,19 +86,10 @@ class ViewController: UIViewController {
 }
 
 private extension ViewController {
-//    func button(with title: String, selector: Selector? = nil) -> UIButton {
-//        let button = UIButton()
-//        button.setTitle(title, for: .normal)
-//        button.setTitleColor(.white, for: .normal)
-//        guard let selector = selector else { return button }
-//        button.addTarget(self, action: selector, for: .touchUpInside)
-//        return button
-//    }
     func button(with title: String, id: Int, selector: Selector? = nil) -> Table {
         let button = Table(id: id, name: title)
-        button.setTitle(title, for: .normal)
-        button.setTitleColor(.white, for: .normal)
         guard let selector = selector else { return button }
+
         button.addTarget(self, action: selector, for: .touchUpInside)
         return button
     }
@@ -159,9 +120,15 @@ class Table: UIButton {
         self.id = id
         self.name = name
         super.init(frame: .zero)
+        setUp()
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    private func setUp() {
+        setTitle(name, for: .normal)
+        setTitleColor(.white, for: .normal)
     }
 }

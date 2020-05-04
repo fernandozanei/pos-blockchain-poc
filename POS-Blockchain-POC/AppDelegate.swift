@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let bytes = request.body
             let data = Data(bytes: UnsafePointer<UInt8>(bytes), count: bytes.count)
             let upload = String(data: data, encoding: .utf8)
-            print(upload!)
+            print("TEST Received data!: \(String(describing: upload))")
             return HttpResponse.ok(.text("pong!"))
         }
         server = swifter
