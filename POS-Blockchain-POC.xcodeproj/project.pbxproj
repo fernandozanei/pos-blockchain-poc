@@ -21,6 +21,7 @@
 		7A1A0AAF22C1713400E29EBC /* FreeFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AAE22C1713400E29EBC /* FreeFunctions.swift */; };
 		7A1A0AB122C171E200E29EBC /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AB022C171E200E29EBC /* Protocols.swift */; };
 		7A1A0AB522C1728E00E29EBC /* TempTransactionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AB422C1728E00E29EBC /* TempTransactionTypes.swift */; };
+		8EF7BFA02460818500A42695 /* LocalServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF7BF9F2460818500A42695 /* LocalServer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		7A1A0AAE22C1713400E29EBC /* FreeFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeFunctions.swift; sourceTree = "<group>"; };
 		7A1A0AB022C171E200E29EBC /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		7A1A0AB422C1728E00E29EBC /* TempTransactionTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempTransactionTypes.swift; sourceTree = "<group>"; };
+		8EF7BF9F2460818500A42695 /* LocalServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalServer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				7A1A0A8322BEC5B600E29EBC /* AppDelegate.swift */,
 				337F2A022322302E00C6A390 /* PortMapper.h */,
 				337F2A032322302E00C6A390 /* PortMapper.m */,
+				8EF7BF9E2460813E00A42695 /* Networking */,
 				7A1A0AA322BECB7800E29EBC /* Blockchain */,
 				7A1A0AB322C1726F00E29EBC /* ViewControllers */,
 				7A1A0AAB22C170DA00E29EBC /* Utilities */,
@@ -168,6 +171,14 @@
 				7A1A0A8522BEC5B600E29EBC /* ViewController.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8EF7BF9E2460813E00A42695 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				8EF7BF9F2460818500A42695 /* LocalServer.swift */,
+			);
+			name = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,6 +289,7 @@
 				7A1A0AAD22C170FD00E29EBC /* Operators.swift in Sources */,
 				7A1A0AA722BECF0700E29EBC /* Blockchain.swift in Sources */,
 				7A1A0A8622BEC5B600E29EBC /* ViewController.swift in Sources */,
+				8EF7BFA02460818500A42695 /* LocalServer.swift in Sources */,
 				337F2A042322302E00C6A390 /* PortMapper.m in Sources */,
 				7A1A0A8422BEC5B600E29EBC /* AppDelegate.swift in Sources */,
 				7A1A0AB122C171E200E29EBC /* Protocols.swift in Sources */,

@@ -10,7 +10,7 @@ import UIKit
 import Swifter
 
 var blockchain = Blockchain()
-var server: HttpServer?
+var server: LocalServer?
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,34 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		// Override point for customization after application launch.
-        let swifter = HttpServer()
-        swifter.GET["/ping"] = { request in
-            return HttpResponse.ok(.text("pong!"))
-        }
-        swifter.POST["/test"] = { request in
-            let bytes = request.body
-            let data = Data(bytes: UnsafePointer<UInt8>(bytes), count: bytes.count)
-            let upload = String(data: data, encoding: .utf8)
-            print("TEST Received data!: \(String(describing: upload))")
-            return HttpResponse.ok(.text("pong!"))
-        }
-        server = swifter
-        print("server: \(server!)")
-
-        do {
-            try server!.start(1337, forceIPv4: true)
-        } catch {
-            do {
-                try server!.start(1338, forceIPv4: true)
-            } catch {
-                do {
-                    try server!.start(1339, forceIPv4: true)
-                } catch {
-                    try! server!.start(1340, forceIPv4: true)
-                }
-            }
-        }
+        server = LocalServer.shared
+        server?.start()
 		return true
 	}
 
@@ -71,7 +45,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func applicationWillTerminate(_ application: UIApplication) {
 		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 	}
-
-
 }
-

@@ -17,41 +17,17 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
 		super.viewDidLoad()
-        
-        table1 = button(with: PortMapper.localAddress() + ":\(try! server!.port())", id: 1, selector: #selector(pressedAction(_:))) |> blackBackground
+
+        table1 = button(with: "Table 1", id: 1, selector: #selector(pressedAction(_:))) |> blackBackground
         table2 = button(with: "Table 2", id: 2, selector: #selector(pressedAction(_:))) |> blackBackground
         table3 = button(with: "Table 3", id: 3, selector: #selector(pressedAction(_:))) |> blackBackground
         table4 = button(with: "Table 4", id: 4, selector: #selector(pressedAction(_:))) |> blackBackground
 
-        let tableHeight: CGFloat = 250.0
-        let topStack = UIStackView(arrangedSubviews: [table1, table2])
-        topStack.distribution = .fillEqually
-        topStack.spacing = 24.0
-        let topStackTopDistance = (view.frame.size.height / 2) - tableHeight - (topStack.spacing / 2)
-        
-        let bottomStack = UIStackView(arrangedSubviews: [table3, table4])
-        bottomStack.distribution = .fillEqually
-        bottomStack.spacing = 24.0
-        
-        view.addSubview(topStack)
-        view.addSubview(bottomStack)
-        
-        topStack.translatesAutoresizingMaskIntoConstraints = false
-        bottomStack.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            topStack.topAnchor.constraint(equalTo: view.topAnchor, constant: topStackTopDistance),
-            topStack.widthAnchor.constraint(equalToConstant: tableHeight * 2 + topStack.spacing),
-            topStack.heightAnchor.constraint(equalToConstant: tableHeight),
-            topStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
-            bottomStack.topAnchor.constraint(equalTo: topStack.bottomAnchor, constant: bottomStack.spacing),
-            bottomStack.widthAnchor.constraint(equalTo: topStack.widthAnchor),
-            bottomStack.heightAnchor.constraint(equalTo: topStack.heightAnchor),
-            bottomStack.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-            ])
+        setupTables()
 
         let registeredTables = blockchain.listen(for: TableState.self, with: tableListener)
+
+        /// naive approach to have all tables show the current state right on initialization
         registeredTables.forEach { tableListener($0) }
 	}
     
@@ -60,17 +36,6 @@ class ViewController: UIViewController {
 
         let isOpen = table.backgroundColor == .black ? true : false
         blockchain.add(transaction: TableState(number: table.id, isOpen: isOpen))
-
-        let session: URLSession = URLSession(configuration: URLSessionConfiguration.default)
-        let defaultLocalhost = URL(string: "http://192.168.0.14:1338")!
-        let data = "Small data".data(using: .utf8)
-        var request = URLRequest(url: defaultLocalhost.appendingPathComponent("/test"))
-        request.httpMethod = "POST"
-        let countString = String(data!.count)
-        request.allHTTPHeaderFields = ["Content-Type": "text/plain", "Content-Length": countString]
-        request.httpBodyStream = InputStream(data: data!)
-        let uploadTask = session.uploadTask(withStreamedRequest: request)
-        uploadTask.resume()
     }
 
     func tableListener(_ transaction: Transaction) {
@@ -86,6 +51,36 @@ class ViewController: UIViewController {
 }
 
 private extension ViewController {
+    func setupTables() {
+        let tableHeight: CGFloat = 250.0
+        let topStack = UIStackView(arrangedSubviews: [table1, table2])
+        topStack.distribution = .fillEqually
+        topStack.spacing = 24.0
+        let topStackTopDistance = (view.frame.size.height / 2) - tableHeight - (topStack.spacing / 2)
+
+        let bottomStack = UIStackView(arrangedSubviews: [table3, table4])
+        bottomStack.distribution = .fillEqually
+        bottomStack.spacing = 24.0
+
+        view.addSubview(topStack)
+        view.addSubview(bottomStack)
+
+        topStack.translatesAutoresizingMaskIntoConstraints = false
+        bottomStack.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            topStack.topAnchor.constraint(equalTo: view.topAnchor, constant: topStackTopDistance),
+            topStack.widthAnchor.constraint(equalToConstant: tableHeight * 2 + topStack.spacing),
+            topStack.heightAnchor.constraint(equalToConstant: tableHeight),
+            topStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+
+            bottomStack.topAnchor.constraint(equalTo: topStack.bottomAnchor, constant: bottomStack.spacing),
+            bottomStack.widthAnchor.constraint(equalTo: topStack.widthAnchor),
+            bottomStack.heightAnchor.constraint(equalTo: topStack.heightAnchor),
+            bottomStack.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
+
     func button(with title: String, id: Int, selector: Selector? = nil) -> Table {
         let button = Table(id: id, name: title)
         guard let selector = selector else { return button }

@@ -7,38 +7,40 @@
 //
 
 struct MenuItem: Transaction, Hashable {
-	let type: TransactionType = .menu_item
-	let name: String
-	let price: Double
+    let type: TransactionType = .menu_item
+    let name: String
+    let price: Double
 
-	func hash() -> Int {
-		return self.hashValue
-	}
+    func hash() -> Int { hashValue }
 
-    static func stype() -> TransactionType {
-        return .menu_item
-    }
+    static func stype() -> TransactionType { .menu_item }
 }
 
-struct Staff: Hashable {
-	enum Role { case admin, waiter }
-	let name: String
-	let role: Role
+struct Staff: Hashable, Codable {
+
+    enum Role: String, Codable {
+        case admin
+        case waiter
+    }
+
+    let name: String
+    let role: Role
 }
 
 struct StaffAction: Transaction, Hashable {
-	enum Action { case login, logout }
-	let type: TransactionType = .staff_action
-	let staff: Staff
-	let action: Action
-	
-	func hash() -> Int {
-		return self.hashValue
-	}
 
-    static func stype() -> TransactionType {
-        return .staff_action
+    enum Action: String, Codable {
+        case login
+        case logout
     }
+
+    let type: TransactionType = .staff_action
+    let staff: Staff
+    let action: Action
+
+    func hash() -> Int { hashValue }
+
+    static func stype() -> TransactionType { .staff_action }
 }
 
 struct TableState: Transaction, Hashable {
@@ -46,11 +48,24 @@ struct TableState: Transaction, Hashable {
     let number: Int
     let isOpen: Bool
     
-    func hash() -> Int {
-        return self.hashValue
-    }
+    func hash() -> Int { hashValue }
 
-    static func stype() -> TransactionType {
-        return .table_state
+    static func stype() -> TransactionType { .table_state }
+}
+
+enum TransactionType: String, Codable {
+    case menu_item
+    case staff_action
+    case table_state
+
+    var metatype: Transaction.Type {
+        switch self {
+        case .menu_item:
+            return MenuItem.self
+        case .staff_action:
+            return StaffAction.self
+        case .table_state:
+            return TableState.self
+        }
     }
 }

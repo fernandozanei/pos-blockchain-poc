@@ -10,7 +10,7 @@ protocol Chainable {
 	func hash() -> Int
 }
 
-protocol Transaction: Chainable {
+protocol Transaction: Chainable, Codable {
 	var type: TransactionType { get }
     static func stype() -> TransactionType
 }
