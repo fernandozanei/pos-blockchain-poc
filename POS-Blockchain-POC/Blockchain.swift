@@ -46,7 +46,11 @@ struct Blockchain {
     }
 
     mutating func append(block: Block) {
-        blockchain.append(block) /// should check to see if they can be added!
+        let isGenesisBlock = block.parentHash == 0
+        let canBeAppended = block.parentHash == blockchain.last?.blockHash
+        guard isGenesisBlock || canBeAppended else { return }
+
+        blockchain.append(block)
         notifyListeners(with: block)
     }
 
