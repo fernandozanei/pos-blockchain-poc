@@ -25,10 +25,8 @@ class ViewController: UIViewController {
 
         setupTables()
 
-        let registeredTables = blockchain.listen(for: TableState.self, with: tableListener)
-
-        /// naive approach to have all tables show the current state right on initialization
-        registeredTables.forEach { tableListener($0) }
+        blockchain.listen(for: TableState.self, with: tableListener)
+        blockchain.listen(for: TableState.self, with: fullTableListener)
 	}
     
     @objc func pressedAction(_ sender: UIButton!) {
@@ -36,6 +34,19 @@ class ViewController: UIViewController {
 
         let isOpen = table.backgroundColor == .black ? true : false
         blockchain.add(transaction: TableState(number: table.id, isOpen: isOpen))
+    }
+
+    func fullTableListener(_ transactions: [Transaction]) {
+        let tableStates = transactions.compactMap { $0 as? TableState }
+
+        tableStates |> forEach { tableState in
+            switch tableState.number {
+            case 1: self.table1.backgroundColor = tableState.isOpen ? .red : .black
+            case 2: self.table2.backgroundColor = tableState.isOpen ? .red : .black
+            case 3: self.table3.backgroundColor = tableState.isOpen ? .red : .black
+            default: self.table4.backgroundColor = tableState.isOpen ? .red : .black
+            }
+        }
     }
 
     func tableListener(_ transaction: Transaction) {

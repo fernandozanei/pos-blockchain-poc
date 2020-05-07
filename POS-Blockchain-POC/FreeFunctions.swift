@@ -21,3 +21,15 @@ public func forEach<A>(_ f: @escaping (A) -> Void) -> ([A]) -> Void {
 public func flatMap<A, B>(_ f: @escaping (A) -> [B]) -> ([A]) -> [B] {
 	return { $0.flatMap(f) }
 }
+
+public func compactMap<A, B>(_ f: @escaping (A?) -> B?) -> ([A?]) -> [B] {
+    return { $0.compactMap(f) }
+}
+
+public func reduce<A, R>(_ accumulator: @escaping (R, A) -> R) -> (R) -> ([A]) -> R {
+    return { initialValue in
+        return { collection in
+            return collection.reduce(initialValue, accumulator)
+        }
+    }
+}

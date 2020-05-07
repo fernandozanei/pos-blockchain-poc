@@ -27,6 +27,7 @@ struct Blockchain {
 
     private var blockchain: [Block] = []
     private var listeners: [(TransactionType, (Transaction) -> Void)] = []
+    private var fullListeners: [(TransactionType, ([Transaction]) -> Void)] = []
     
     var size: Int { return blockchain.count }
 
@@ -36,8 +37,11 @@ struct Blockchain {
         encodeAndBroadcast(block)
     }
 
-    func transactionsOf(type: TransactionType) -> [Transaction] {
-        return blockchain |> flatMap { $0.transactions } >>> filter { $0.type == type }
+    mutating func update(with blockchain: [Block]) {
+        guard let firstBlock = blockchain.first, firstBlock.parentHash == 0 else { return }
+
+        self.blockchain = blockchain
+        notifyFullListenersOf(type: .table_state)
     }
 
     mutating func add(transaction: Transaction) {
@@ -54,9 +58,16 @@ struct Blockchain {
         notifyListeners(with: block)
     }
 
-    mutating func listen<A: Transaction>(for tt: A.Type, with listener: @escaping (Transaction) -> Void) -> [A] {
+    mutating func listen<A: Transaction>(for tt: A.Type, with listener: @escaping (Transaction) -> Void) {
         listeners.append((tt.stype(), listener))
-        return transactionsOf(type: tt.stype()).compactMap(A.fromTransaction(_:))
+    }
+
+    mutating func listen<A: Transaction>(for tt: A.Type, with listener: @escaping ([Transaction]) -> Void) {
+        fullListeners.append((tt.stype(), listener))
+    }
+
+    func encodeBlockchain() -> Data? {
+        try? JSONEncoder().encode(blockchain)
     }
 }
 
@@ -68,9 +79,31 @@ private extension Blockchain {
         }
     }
 
+    func notifyFullListenersOf(type: TransactionType) {
+        let reversedTransactions = blockchain.reversed() |> flatMap { $0.transactions }
+
+        switch type {
+        case .menu_item: break
+        case .staff_action: break
+        case .table_state:
+            let tableStateTransactions = reversedTransactions |> compactMap { $0 as? TableState }
+
+            var latestTransactions: [TableState] = []
+            tableStateTransactions.forEach { transaction in
+                if !latestTransactions.contains(where: { $0.number == transaction.number }) {
+                    latestTransactions.append(transaction)
+                }
+            }
+
+            fullListeners
+                .filter { $0.0 == type }
+                .forEach { $0.1(latestTransactions) }
+        }
+    }
+
     func encodeAndBroadcast(_ block: Block) {
-        guard let blockData = try? JSONEncoder().encode(block) else { return }
-        LocalServer.shared.broadcast(blockData)
+        guard let dataBlock = try? JSONEncoder().encode(block) else { return }
+        LocalServer.shared.broadcast(dataBlock, path: .block)
     }
 
     func generateBlock(_ ts: [Transaction]) -> Block {

@@ -20,6 +20,17 @@ final class LocalServer {
     private let maxOpenPorts: Int = 5
     private let session: URLSession = URLSession(configuration: URLSessionConfiguration.default)
 
+    enum Path: String {
+        case block = "/block"
+        case port = "/port"
+        case blockchain = "/blockchain"
+    }
+
+    private enum State {
+        case started
+        case stopped
+    }
+
     private init() {
         httpServer = HttpServer()
         localAddress = PortMapper.localAddress()
@@ -41,35 +52,11 @@ final class LocalServer {
 
         if initiateServer(at: initialPort) {
             state = .started
+            requestBlockchain()
         }
     }
 
-    func stop() {
-        state = .stopped
-    }
-
-    func broadcast(_ data: Data) {
-        for peerPort in initialPort...(initialPort + maxOpenPorts) {
-            guard peerPort != port,
-                let peerUrl = URL(string: "http://\(localAddress):\(peerPort)") else { continue }
-
-            var request = URLRequest(url: peerUrl.appendingPathComponent("/block"))
-            request.httpMethod = "POST"
-            let contentLength = String(data.count)
-            request.allHTTPHeaderFields = ["Content-Type": "text/plain", "Content-Length": contentLength]
-            request.httpBodyStream = InputStream(data: data)
-            session.uploadTask(withStreamedRequest: request).resume()
-        }
-    }
-}
-
-private extension LocalServer {
-    enum State {
-        case started
-        case stopped
-    }
-
-    func initiateServer(at port: Int) -> Bool {
+    private func initiateServer(at port: Int) -> Bool {
         guard port < initialPort + maxOpenPorts else { return false }
 
         do {
@@ -81,8 +68,51 @@ private extension LocalServer {
         return true
     }
 
-    func setupEndpoints() {
-        httpServer.POST["/block"] = { request in
+    func stop() {
+        state = .stopped
+    }
+
+    func broadcast(_ data: Data, path: Path) {
+        for peerPort in initialPort...(initialPort + maxOpenPorts) {
+            guard peerPort != port else { continue }
+            post(data: data, port: peerPort, path: .block)
+        }
+    }
+
+    private func requestBlockchain() {
+
+        for peerPort in initialPort...(initialPort + maxOpenPorts) {
+            guard peerPort != port,
+                let url = URL(string: "http://\(localAddress):\(peerPort)") else { continue }
+
+            var request = URLRequest(url: url.appendingPathComponent(Path.blockchain.rawValue))
+            request.httpMethod = "GET"
+            session.dataTask(with: request, completionHandler: { data, response, error in
+
+                guard error == nil, let data = data else { return }
+
+                if let blocks = try? JSONDecoder().decode([Blockchain.Block].self, from: data) {
+                    DispatchQueue.main.async {
+                        blockchain.update(with: blocks)
+                    }
+                }
+            }).resume()
+        }
+    }
+
+    private func post(data: Data, port: Int, path: Path) {
+        guard let url = URL(string: "http://\(localAddress):\(port)") else { return }
+
+        var request = URLRequest(url: url.appendingPathComponent(path.rawValue))
+        request.httpMethod = "POST"
+        let contentLength = String(data.count)
+        request.allHTTPHeaderFields = ["Content-Type": "text/plain", "Content-Length": contentLength]
+        request.httpBodyStream = InputStream(data: data)
+        session.uploadTask(withStreamedRequest: request).resume()
+    }
+
+    private func setupEndpoints() {
+        httpServer.POST[Path.block.rawValue] = { request in
             let bytes = request.body
             let data = Data(bytes: UnsafePointer<UInt8>(bytes), count: bytes.count)
             if let block = try? JSONDecoder().decode(Blockchain.Block.self, from: data) {
@@ -92,6 +122,14 @@ private extension LocalServer {
             }
 
             return HttpResponse.ok(.text("pong!"))
+        }
+
+        httpServer.GET[Path.blockchain.rawValue] = { request in
+            guard let blockchainData = blockchain.encodeBlockchain() else {
+                return HttpResponse.internalServerError
+            }
+
+            return HttpResponse.ok(.text(String(decoding: blockchainData, as: UTF8.self)))
         }
     }
 }
