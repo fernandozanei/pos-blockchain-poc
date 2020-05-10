@@ -15,6 +15,10 @@ protocol Transaction: Chainable, Codable {
     static func stype() -> TransactionType
 }
 
+protocol Transactionable {
+    func toTransaction() -> Transaction
+}
+
 extension Transaction {
     static func fromTransaction<T>(_ t: Transaction) -> T? {
         guard let transaction = t as? T else { return nil }

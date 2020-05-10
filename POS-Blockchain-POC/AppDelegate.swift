@@ -19,9 +19,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let homeViewController = UINavigationController(rootViewController: ViewController())
+
+        window!.rootViewController = homeViewController
+        window!.makeKeyAndVisible()
+
+
         server = LocalServer.shared
         server?.start()
-		return true
+        
+
+        return true
 	}
 
 	func applicationWillResignActive(_ application: UIApplication) {

@@ -34,6 +34,8 @@ class ViewController: UIViewController {
 
         let isOpen = table.backgroundColor == .black ? true : false
         blockchain.add(transaction: TableState(number: table.id, isOpen: isOpen))
+        
+        navigationController?.pushViewController(TableViewController(), animated: true)
     }
 
     func fullTableListener(_ transactions: [Transaction]) {
@@ -63,6 +65,8 @@ class ViewController: UIViewController {
 
 private extension ViewController {
     func setupTables() {
+        view.backgroundColor = .white
+        
         let tableHeight: CGFloat = 250.0
         let topStack = UIStackView(arrangedSubviews: [table1, table2])
         topStack.distribution = .fillEqually

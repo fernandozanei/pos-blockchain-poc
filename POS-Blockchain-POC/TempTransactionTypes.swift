@@ -6,7 +6,7 @@
 //  Copyright © 2019 Jonathan Oliveira. All rights reserved.
 //
 
-struct MenuItem: Transaction, Hashable {
+struct MenuItemTransaction: Transaction, Hashable {
     let type: TransactionType = .menu_item
     let name: String
     let price: Double
@@ -61,7 +61,7 @@ enum TransactionType: String, Codable {
     var metatype: Transaction.Type {
         switch self {
         case .menu_item:
-            return MenuItem.self
+            return MenuItemTransaction.self
         case .staff_action:
             return StaffAction.self
         case .table_state:

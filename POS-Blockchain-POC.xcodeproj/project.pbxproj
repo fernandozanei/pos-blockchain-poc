@@ -12,7 +12,6 @@
 		337F2A042322302E00C6A390 /* PortMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 337F2A032322302E00C6A390 /* PortMapper.m */; };
 		7A1A0A8422BEC5B600E29EBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0A8322BEC5B600E29EBC /* AppDelegate.swift */; };
 		7A1A0A8622BEC5B600E29EBC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0A8522BEC5B600E29EBC /* ViewController.swift */; };
-		7A1A0A8922BEC5B600E29EBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A1A0A8722BEC5B600E29EBC /* Main.storyboard */; };
 		7A1A0A8B22BEC5B900E29EBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A1A0A8A22BEC5B900E29EBC /* Assets.xcassets */; };
 		7A1A0A8E22BEC5B900E29EBC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A1A0A8C22BEC5B900E29EBC /* LaunchScreen.storyboard */; };
 		7A1A0A9922BEC5B900E29EBC /* POS_Blockchain_POCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0A9822BEC5B900E29EBC /* POS_Blockchain_POCTests.swift */; };
@@ -22,6 +21,11 @@
 		7A1A0AB122C171E200E29EBC /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AB022C171E200E29EBC /* Protocols.swift */; };
 		7A1A0AB522C1728E00E29EBC /* TempTransactionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AB422C1728E00E29EBC /* TempTransactionTypes.swift */; };
 		8EF7BFA02460818500A42695 /* LocalServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF7BF9F2460818500A42695 /* LocalServer.swift */; };
+		ED8B6C702468A1D600886E85 /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8B6C6F2468A1D600886E85 /* Extensions+UIView.swift */; };
+		ED8B6C722468A69400886E85 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8B6C712468A69400886E85 /* TableViewController.swift */; };
+		ED8B6C742468AE2400886E85 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8B6C732468AE2400886E85 /* MenuTableViewController.swift */; };
+		ED8B6C762468AE4800886E85 /* OrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8B6C752468AE4800886E85 /* OrderTableViewController.swift */; };
+		ED8B6C792468AF6E00886E85 /* MenuItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8B6C782468AF6E00886E85 /* MenuItemModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +60,6 @@
 		7A1A0A8022BEC5B600E29EBC /* POS-Blockchain-POC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "POS-Blockchain-POC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A1A0A8322BEC5B600E29EBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A1A0A8522BEC5B600E29EBC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		7A1A0A8822BEC5B600E29EBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7A1A0A8A22BEC5B900E29EBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A1A0A8D22BEC5B900E29EBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7A1A0A8F22BEC5B900E29EBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -69,6 +72,11 @@
 		7A1A0AB022C171E200E29EBC /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		7A1A0AB422C1728E00E29EBC /* TempTransactionTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempTransactionTypes.swift; sourceTree = "<group>"; };
 		8EF7BF9F2460818500A42695 /* LocalServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalServer.swift; sourceTree = "<group>"; };
+		ED8B6C6F2468A1D600886E85 /* Extensions+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
+		ED8B6C712468A69400886E85 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		ED8B6C732468AE2400886E85 /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
+		ED8B6C752468AE4800886E85 /* OrderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewController.swift; sourceTree = "<group>"; };
+		ED8B6C782468AF6E00886E85 /* MenuItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,14 +129,15 @@
 		7A1A0A8222BEC5B600E29EBC /* POS-Blockchain-POC */ = {
 			isa = PBXGroup;
 			children = (
+				ED8B6C772468AF5800886E85 /* Models */,
 				7A1A0A8322BEC5B600E29EBC /* AppDelegate.swift */,
+				ED8B6C6F2468A1D600886E85 /* Extensions+UIView.swift */,
 				337F2A022322302E00C6A390 /* PortMapper.h */,
 				337F2A032322302E00C6A390 /* PortMapper.m */,
 				8EF7BF9E2460813E00A42695 /* Networking */,
 				7A1A0AA322BECB7800E29EBC /* Blockchain */,
 				7A1A0AB322C1726F00E29EBC /* ViewControllers */,
 				7A1A0AAB22C170DA00E29EBC /* Utilities */,
-				7A1A0A8722BEC5B600E29EBC /* Main.storyboard */,
 				7A1A0A8A22BEC5B900E29EBC /* Assets.xcassets */,
 				7A1A0A8C22BEC5B900E29EBC /* LaunchScreen.storyboard */,
 				7A1A0A8F22BEC5B900E29EBC /* Info.plist */,
@@ -169,6 +178,9 @@
 			isa = PBXGroup;
 			children = (
 				7A1A0A8522BEC5B600E29EBC /* ViewController.swift */,
+				ED8B6C712468A69400886E85 /* TableViewController.swift */,
+				ED8B6C732468AE2400886E85 /* MenuTableViewController.swift */,
+				ED8B6C752468AE4800886E85 /* OrderTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -179,6 +191,14 @@
 				8EF7BF9F2460818500A42695 /* LocalServer.swift */,
 			);
 			name = Networking;
+			sourceTree = "<group>";
+		};
+		ED8B6C772468AF5800886E85 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ED8B6C782468AF6E00886E85 /* MenuItemModel.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,7 +286,6 @@
 			files = (
 				7A1A0A8E22BEC5B900E29EBC /* LaunchScreen.storyboard in Resources */,
 				7A1A0A8B22BEC5B900E29EBC /* Assets.xcassets in Resources */,
-				7A1A0A8922BEC5B600E29EBC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,9 +306,14 @@
 				7A1A0AB522C1728E00E29EBC /* TempTransactionTypes.swift in Sources */,
 				7A1A0AAF22C1713400E29EBC /* FreeFunctions.swift in Sources */,
 				7A1A0AAD22C170FD00E29EBC /* Operators.swift in Sources */,
+				ED8B6C792468AF6E00886E85 /* MenuItemModel.swift in Sources */,
+				ED8B6C762468AE4800886E85 /* OrderTableViewController.swift in Sources */,
 				7A1A0AA722BECF0700E29EBC /* Blockchain.swift in Sources */,
+				ED8B6C702468A1D600886E85 /* Extensions+UIView.swift in Sources */,
 				7A1A0A8622BEC5B600E29EBC /* ViewController.swift in Sources */,
+				ED8B6C722468A69400886E85 /* TableViewController.swift in Sources */,
 				8EF7BFA02460818500A42695 /* LocalServer.swift in Sources */,
+				ED8B6C742468AE2400886E85 /* MenuTableViewController.swift in Sources */,
 				337F2A042322302E00C6A390 /* PortMapper.m in Sources */,
 				7A1A0A8422BEC5B600E29EBC /* AppDelegate.swift in Sources */,
 				7A1A0AB122C171E200E29EBC /* Protocols.swift in Sources */,
@@ -315,14 +339,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		7A1A0A8722BEC5B600E29EBC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7A1A0A8822BEC5B600E29EBC /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		7A1A0A8C22BEC5B900E29EBC /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
