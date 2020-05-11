@@ -34,6 +34,7 @@ class ViewController: UIViewController {
 
         let isOpen = table.backgroundColor == .black ? true : false
         blockchain.add(transaction: TableState(number: table.id, isOpen: isOpen))
+        blockchain.mineBlockWith()
         
         navigationController?.pushViewController(TableViewController(), animated: true)
     }

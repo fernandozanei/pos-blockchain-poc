@@ -16,8 +16,8 @@ class TableViewController: UIViewController {
     private let formContainer = UIView()
     private var formContent: UINavigationController?
 
-    private var listVC: UIViewController!
-    private var formVC: UIViewController!
+    private var listVC: MenuTableViewController!
+    private var formVC: OrderTableViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +60,8 @@ class TableViewController: UIViewController {
         listContent?.view.frame = .init(x: 0, y: 0, width: listContainer.frame.width, height: listContainer.frame.height)
         listContainer.addSubview(listContent!.view)
         listContent?.didMove(toParent: self)
+        
+        listVC.delegate = self
     }
     
     private func loadFormVC() {
@@ -81,5 +83,11 @@ class TableViewController: UIViewController {
             formContainer.addSubview(formContent!.view)
             formContent?.didMove(toParent: self)
         }
+    }
+}
+
+extension TableViewController: MenuTableViewControllerDelegate {
+    func didSelectMenuItem(_ menutItem: MenuItemModel) {
+        formVC.menuItems.append(menutItem)
     }
 }

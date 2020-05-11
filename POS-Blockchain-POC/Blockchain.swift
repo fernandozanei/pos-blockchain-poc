@@ -26,14 +26,17 @@ struct Blockchain {
     }
 
     private var blockchain: [Block] = []
+    private var openTransactions: [Transaction] = []
     private var listeners: [(TransactionType, (Transaction) -> Void)] = []
     private var fullListeners: [(TransactionType, ([Transaction]) -> Void)] = []
     
     var size: Int { return blockchain.count }
 
-    mutating func mineBlockWith(_ ts: [Transaction]) {
-        let block = generateBlock(ts)
+    mutating func mineBlockWith(_ ts: [Transaction] = []) {
+        let transactions = ts.isEmpty ? openTransactions : ts
+        let block = generateBlock(transactions)
         append(block: block)
+        openTransactions = []
         encodeAndBroadcast(block)
     }
 
@@ -46,7 +49,7 @@ struct Blockchain {
 
     mutating func add(transaction: Transaction) {
         /// right now, all blocks are made of a single transaction. This should change for performance.
-        let _ = mineBlockWith([transaction])
+        openTransactions.append(transaction)
     }
 
     mutating func append(block: Block) {
