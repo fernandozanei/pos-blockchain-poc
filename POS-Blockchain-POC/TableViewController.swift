@@ -45,6 +45,16 @@ class TableViewController: UIViewController {
         loadFormVC()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        if self.isMovingFromParent {
+            let transactions = formVC.menuItems |> map { MenuItemTransaction(name: $0.name, price: $0.price) }
+            blockchain.add(transactions: transactions)
+            blockchain.mineBlock()
+        }
+    }
+    
     private func loadListVC() {
         if let listContent = listContent {
             listContent.view.removeFromSuperview()

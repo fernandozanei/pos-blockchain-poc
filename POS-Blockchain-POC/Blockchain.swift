@@ -32,9 +32,10 @@ struct Blockchain {
     
     var size: Int { return blockchain.count }
 
-    mutating func mineBlockWith(_ ts: [Transaction] = []) {
-        let transactions = ts.isEmpty ? openTransactions : ts
-        let block = generateBlock(transactions)
+    mutating func mineBlock() {
+        guard !openTransactions.isEmpty else { return }
+
+        let block = generateBlock(openTransactions)
         append(block: block)
         openTransactions = []
         encodeAndBroadcast(block)
@@ -50,6 +51,24 @@ struct Blockchain {
     mutating func add(transaction: Transaction) {
         /// right now, all blocks are made of a single transaction. This should change for performance.
         openTransactions.append(transaction)
+    }
+    
+    mutating func add(transactions: [Transaction]) {
+        /// right now, all blocks are made of a single transaction. This should change for performance.
+        openTransactions.append(contentsOf: transactions)
+    }
+    
+    func queryFirstBlock(where predicate: @escaping (Transaction) -> Bool) -> [Transaction] {
+        var filteredTransactions: [Transaction] = []
+        
+        for block in blockchain.reversed() {
+            guard block.transactions.contains(where: predicate) else { continue }
+            
+            filteredTransactions.append(contentsOf: block.transactions.filter(predicate))
+            break
+        }
+        
+        return filteredTransactions
     }
 
     mutating func append(block: Block) {
