@@ -32,8 +32,20 @@ class ViewController: UIViewController {
     @objc func pressedAction(_ sender: UIButton!) {
         guard let table = sender as? Table else { return }
 
-        let isOpen = table.backgroundColor == .black ? true : false
-        blockchain.add(transaction: TableState(number: table.id, isOpen: isOpen))
+        let transactions = blockchain.queryFirstBlock { tableState in
+            guard let tableState = tableState as? TableState else { return false }
+            
+            return tableState.number == table.id
+            }
+        
+        let tableState = transactions.compactMap({ $0 as? TableState }).first
+        
+        if let tableState = tableState, tableState.isOpen {
+            showErrorAlert()
+            return
+        }
+        
+        blockchain.add(transaction: TableState(number: table.id, isOpen: true))
         blockchain.mineBlock()
         
         navigationController?.pushViewController(TableViewController(tableId: table.id), animated: true)
@@ -61,6 +73,12 @@ class ViewController: UIViewController {
         case 3: table3.backgroundColor = table.isOpen ? .red : .black
         default: table4.backgroundColor = table.isOpen ? .red : .black
         }
+    }
+    
+    private func showErrorAlert() {
+        let alertController = UIAlertController(title: "Error!", message: "Table is already open!", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alertController, animated: true)
     }
 }
 

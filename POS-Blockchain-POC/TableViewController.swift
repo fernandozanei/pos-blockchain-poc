@@ -62,6 +62,7 @@ class TableViewController: UIViewController {
         if self.isMovingFromParent {
             let transactions = formVC.menuItems |> map { MenuItemTransaction(name: $0.name, price: $0.price, tableId: self.tableId) }
             blockchain.add(transactions: transactions)
+            blockchain.add(transaction: TableState(number: tableId, isOpen: false))
             blockchain.mineBlock()
         }
     }
