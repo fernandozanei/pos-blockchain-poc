@@ -10,6 +10,8 @@ import UIKit
 
 class TableViewController: UIViewController {
     
+    private let tableId: Int
+    
     private let listContainer = UIView()
     private var listContent: UINavigationController?
 
@@ -18,7 +20,16 @@ class TableViewController: UIViewController {
 
     private var listVC: MenuTableViewController!
     private var formVC: OrderTableViewController!
-
+    
+    init(tableId: Int) {
+        self.tableId = tableId
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
                 
@@ -49,10 +60,16 @@ class TableViewController: UIViewController {
         super.viewWillDisappear(animated)
 
         if self.isMovingFromParent {
-            let transactions = formVC.menuItems |> map { MenuItemTransaction(name: $0.name, price: $0.price) }
+            let transactions = formVC.menuItems |> map { MenuItemTransaction(name: $0.name, price: $0.price, tableId: self.tableId) }
             blockchain.add(transactions: transactions)
             blockchain.mineBlock()
         }
+    }
+    
+    private func currentMenuItemsQuery(transaction: Transaction) -> Bool {
+        guard let transaction = transaction as? MenuItemTransaction else { return false }
+        
+        return transaction.tableId == tableId
     }
     
     private func loadListVC() {
@@ -93,6 +110,12 @@ class TableViewController: UIViewController {
             formContainer.addSubview(formContent!.view)
             formContent?.didMove(toParent: self)
         }
+        
+        let menuItems = blockchain.queryFirstBlock(where: currentMenuItemsQuery(transaction:))
+            |> compactMap { $0 as? MenuItemTransaction }
+            >>> map { MenuItemModel(name: $0.name, price: $0.price) }
+        
+        formVC.menuItems = menuItems
     }
 }
 

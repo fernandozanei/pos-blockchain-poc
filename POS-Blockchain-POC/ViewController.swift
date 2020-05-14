@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         blockchain.add(transaction: TableState(number: table.id, isOpen: isOpen))
         blockchain.mineBlock()
         
-        navigationController?.pushViewController(TableViewController(), animated: true)
+        navigationController?.pushViewController(TableViewController(tableId: table.id), animated: true)
     }
 
     func fullTableListener(_ transactions: [Transaction]) {

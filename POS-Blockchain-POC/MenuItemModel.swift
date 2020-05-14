@@ -12,15 +12,16 @@ struct MenuItemModel: Transactionable {
     
     let name: String
     let price: Double
+    let tableId: Int? = nil
     
     func toTransaction() -> Transaction {
-        MenuItemTransaction(name: name, price: price)
+        MenuItemTransaction(name: name, price: price, tableId: tableId ?? -1)
     }
 }
 
 
 let kMenuItems: [MenuItemModel] = [
-    MenuItemModel(name: "Coke", price: 2.5),
+    MenuItemModel(name: "Coke", price: 2.5 ),
     MenuItemModel(name: "Sprite", price: 2.5),
     MenuItemModel(name: "Tacos", price: 12.5),
     MenuItemModel(name: "Fries", price: 9.0),

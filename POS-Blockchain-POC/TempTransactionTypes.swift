@@ -10,6 +10,7 @@ struct MenuItemTransaction: Transaction, Hashable {
     let type: TransactionType = .menu_item
     let name: String
     let price: Double
+    let tableId: Int
 
     func hash() -> Int { hashValue }
 

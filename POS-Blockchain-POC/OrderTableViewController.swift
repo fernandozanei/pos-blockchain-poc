@@ -52,26 +52,8 @@ class OrderTableViewController: UIViewController {
         tableView.delegate = self
         
         tableView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: totalView.topAnchor, trailing: view.trailingAnchor)
-        
-        let menuItems = blockchain.queryFirstBlock(where: currentMenuItemsQuery(transaction:))
-            |> compactMap { $0 as? MenuItemTransaction }
-            >>> map { MenuItemModel(name: $0.name, price: $0.price) }
-        
-        self.menuItems.append(contentsOf: menuItems)
     }
     
-    func menuItemListener(_ transaction: Transaction) {
-        guard let transaction = transaction as? MenuItemTransaction else { return }
-        
-        let menuItem = MenuItemModel(name: transaction.name, price: transaction.price)
-        menuItems.append(menuItem)
-    }
-    
-    private func currentMenuItemsQuery(transaction: Transaction) -> Bool {
-        guard let _ = transaction as? MenuItemTransaction else { return false }
-        
-        return true
-    }
 }
 
 extension OrderTableViewController: UITableViewDataSource {
