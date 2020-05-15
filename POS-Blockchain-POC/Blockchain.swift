@@ -105,8 +105,7 @@ private extension Blockchain {
         let reversedTransactions = blockchain.reversed() |> flatMap { $0.transactions }
 
         switch type {
-        case .menu_item: break
-        case .staff_action: break
+        case .menu_item, .order, .staff_action: break
         case .table_state:
             let tableStateTransactions = reversedTransactions |> compactMap { $0 as? TableState }
 

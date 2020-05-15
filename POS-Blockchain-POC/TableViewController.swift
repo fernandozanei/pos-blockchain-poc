@@ -60,17 +60,21 @@ class TableViewController: UIViewController {
         super.viewWillDisappear(animated)
 
         if self.isMovingFromParent {
-            let transactions = formVC.menuItems |> map { MenuItemTransaction(name: $0.name, price: $0.price, tableId: self.tableId) }
-            blockchain.add(transactions: transactions)
+            let menuItems = formVC.menuItems |> map { MenuItemTransaction(name: $0.name, price: $0.price) }
+            let order = OrderTransaction(
+                tableId: tableId,
+                isOpen: menuItems.isEmpty ? false : true,
+                menuItems: menuItems)
+            blockchain.add(transaction: order)
             blockchain.add(transaction: TableState(number: tableId, isOpen: false))
             blockchain.mineBlock()
         }
     }
     
     private func currentMenuItemsQuery(transaction: Transaction) -> Bool {
-        guard let transaction = transaction as? MenuItemTransaction else { return false }
+        guard let order = transaction as? OrderTransaction else { return false }
         
-        return transaction.tableId == tableId
+        return order.tableId == tableId
     }
     
     private func loadListVC() {
@@ -113,7 +117,8 @@ class TableViewController: UIViewController {
         }
         
         let menuItems = blockchain.queryFirstBlock(where: currentMenuItemsQuery(transaction:))
-            |> compactMap { $0 as? MenuItemTransaction }
+            |> compactMap { $0 as? OrderTransaction }
+            >>> flatMap { $0.menuItems }
             >>> map { MenuItemModel(name: $0.name, price: $0.price) }
         
         formVC.menuItems = menuItems

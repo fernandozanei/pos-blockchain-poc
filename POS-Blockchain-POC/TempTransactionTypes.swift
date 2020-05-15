@@ -10,11 +10,22 @@ struct MenuItemTransaction: Transaction, Hashable {
     let type: TransactionType = .menu_item
     let name: String
     let price: Double
-    let tableId: Int
+//    let tableId: Int
 
     func hash() -> Int { hashValue }
 
     static func stype() -> TransactionType { .menu_item }
+}
+
+struct OrderTransaction: Transaction, Hashable {
+    let type: TransactionType = .order
+    let tableId: Int
+    let isOpen: Bool
+    let menuItems: [MenuItemTransaction]
+
+    func hash() -> Int { hashValue }
+
+    static func stype() -> TransactionType { .order }
 }
 
 struct Staff: Hashable, Codable {
@@ -58,6 +69,7 @@ enum TransactionType: String, Codable {
     case menu_item
     case staff_action
     case table_state
+    case order
 
     var metatype: Transaction.Type {
         switch self {
@@ -67,6 +79,8 @@ enum TransactionType: String, Codable {
             return StaffAction.self
         case .table_state:
             return TableState.self
+        case .order:
+            return OrderTransaction.self
         }
     }
 }
