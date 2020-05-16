@@ -17,9 +17,18 @@ class TableViewController: UIViewController {
 
     private let formContainer = UIView()
     private var formContent: UINavigationController?
+    private var isClosingOrder: Bool = false
 
     private var listVC: MenuTableViewController!
     private var formVC: OrderTableViewController!
+
+    private let button: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .red
+        button.setTitle("Close Order", for: .normal)
+        button.addTarget(self, action: #selector(closeOrder(_:)), for: .touchUpInside)
+        return button
+    }()
     
     init(tableId: Int) {
         self.tableId = tableId
@@ -32,13 +41,9 @@ class TableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        let button = UIButton()
-        button.backgroundColor = .red
-        button.setTitle("OK", for: .normal)
 
         view.addSubview(button)
-        button.anchor(leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, size: .init(width: 0, height: 66))
+        button.anchor(leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 0, bottom: -34, right: 0), size: .init(width: 0, height: 134))
         
         view.addSubview(listContainer)
         
@@ -56,21 +61,31 @@ class TableViewController: UIViewController {
         loadFormVC()
     }
     
+    @objc fileprivate func closeOrder(_ sender: UIButton?) {
+        let menuItems = formVC.menuItems |> map { MenuItemTransaction(name: $0.name, price: $0.price) }
+        let order = OrderTransaction(
+            tableId: tableId,
+            isOpen: sender != nil ? false : (menuItems.isEmpty ? false : true),
+            menuItems: menuItems)
+        blockchain.add(transaction: order)
+        blockchain.add(transaction: TableState(number: tableId, isOpen: false))
+        blockchain.mineBlock()
+        isClosingOrder = true
+
+        navigationController?.popViewController(animated: true)
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        if self.isMovingFromParent {
-            let menuItems = formVC.menuItems |> map { MenuItemTransaction(name: $0.name, price: $0.price) }
-            let order = OrderTransaction(
-                tableId: tableId,
-                isOpen: menuItems.isEmpty ? false : true,
-                menuItems: menuItems)
-            blockchain.add(transaction: order)
-            blockchain.add(transaction: TableState(number: tableId, isOpen: false))
-            blockchain.mineBlock()
+        if self.isMovingFromParent && !isClosingOrder {
+            closeOrder(nil)
         }
     }
-    
+
+    private func craeteOrder(isClosed: Bool = true) {
+    }
+
     private func currentMenuItemsQuery(transaction: Transaction) -> Bool {
         guard let order = transaction as? OrderTransaction else { return false }
         
@@ -118,6 +133,7 @@ class TableViewController: UIViewController {
         
         let menuItems = blockchain.queryFirstBlock(where: currentMenuItemsQuery(transaction:))
             |> compactMap { $0 as? OrderTransaction }
+            >>> filter { $0.isOpen }
             >>> flatMap { $0.menuItems }
             >>> map { MenuItemModel(name: $0.name, price: $0.price) }
         
