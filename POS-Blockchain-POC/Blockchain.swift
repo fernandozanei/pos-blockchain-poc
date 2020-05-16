@@ -71,6 +71,18 @@ struct Blockchain {
         return filteredTransactions
     }
 
+    func queryAllBlocks(where predicate: @escaping (Transaction) -> Bool) -> [Transaction] {
+        var transactions: [Transaction] = []
+
+        for block in blockchain.reversed() {
+            guard block.transactions.contains(where: predicate) else { continue }
+
+            transactions.append(contentsOf: block.transactions.filter(predicate))
+        }
+
+        return transactions
+    }
+
     mutating func append(block: Block) {
         let isGenesisBlock = block.parentHash == 0
         let canBeAppended = block.parentHash == blockchain.last?.blockHash

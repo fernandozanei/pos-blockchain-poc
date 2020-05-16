@@ -20,6 +20,7 @@
 		7A1A0AAF22C1713400E29EBC /* FreeFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AAE22C1713400E29EBC /* FreeFunctions.swift */; };
 		7A1A0AB122C171E200E29EBC /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AB022C171E200E29EBC /* Protocols.swift */; };
 		7A1A0AB522C1728E00E29EBC /* TempTransactionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A0AB422C1728E00E29EBC /* TempTransactionTypes.swift */; };
+		8EA2A81C246F6B8D0068B182 /* ClosedOrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA2A81B246F6B8D0068B182 /* ClosedOrderTableViewController.swift */; };
 		8EF7BFA02460818500A42695 /* LocalServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF7BF9F2460818500A42695 /* LocalServer.swift */; };
 		ED8B6C702468A1D600886E85 /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8B6C6F2468A1D600886E85 /* Extensions+UIView.swift */; };
 		ED8B6C722468A69400886E85 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8B6C712468A69400886E85 /* TableViewController.swift */; };
@@ -71,6 +72,7 @@
 		7A1A0AAE22C1713400E29EBC /* FreeFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeFunctions.swift; sourceTree = "<group>"; };
 		7A1A0AB022C171E200E29EBC /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		7A1A0AB422C1728E00E29EBC /* TempTransactionTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempTransactionTypes.swift; sourceTree = "<group>"; };
+		8EA2A81B246F6B8D0068B182 /* ClosedOrderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedOrderTableViewController.swift; sourceTree = "<group>"; };
 		8EF7BF9F2460818500A42695 /* LocalServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalServer.swift; sourceTree = "<group>"; };
 		ED8B6C6F2468A1D600886E85 /* Extensions+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
 		ED8B6C712468A69400886E85 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				ED8B6C712468A69400886E85 /* TableViewController.swift */,
 				ED8B6C732468AE2400886E85 /* MenuTableViewController.swift */,
 				ED8B6C752468AE4800886E85 /* OrderTableViewController.swift */,
+				8EA2A81B246F6B8D0068B182 /* ClosedOrderTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				7A1A0A8622BEC5B600E29EBC /* ViewController.swift in Sources */,
 				ED8B6C722468A69400886E85 /* TableViewController.swift in Sources */,
 				8EF7BFA02460818500A42695 /* LocalServer.swift in Sources */,
+				8EA2A81C246F6B8D0068B182 /* ClosedOrderTableViewController.swift in Sources */,
 				ED8B6C742468AE2400886E85 /* MenuTableViewController.swift in Sources */,
 				337F2A042322302E00C6A390 /* PortMapper.m in Sources */,
 				7A1A0A8422BEC5B600E29EBC /* AppDelegate.swift in Sources */,

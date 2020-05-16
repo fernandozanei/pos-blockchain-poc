@@ -27,7 +27,14 @@ class ViewController: UIViewController {
 
         blockchain.listen(for: TableState.self, with: tableListener)
         blockchain.listen(for: TableState.self, with: fullTableListener)
+
+        let navButton = UIBarButtonItem(title: "Closed Orders", style: .plain, target: self, action: #selector(showClosedOrders))
+        navigationItem.setRightBarButton(navButton, animated: true)
 	}
+
+    @objc fileprivate func showClosedOrders() {
+        navigationController?.pushViewController(ClosedOrderTableViewController(), animated: true)
+    }
     
     @objc func pressedAction(_ sender: UIButton!) {
         guard let table = sender as? Table else { return }
