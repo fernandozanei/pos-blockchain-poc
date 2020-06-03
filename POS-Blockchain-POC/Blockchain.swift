@@ -74,7 +74,7 @@ struct Blockchain {
     func queryAllBlocks(where predicate: @escaping (Transaction) -> Bool) -> [Transaction] {
         var transactions: [Transaction] = []
 
-        for block in blockchain.reversed() {
+        for block in blockchain {
             guard block.transactions.contains(where: predicate) else { continue }
 
             transactions.append(contentsOf: block.transactions.filter(predicate))

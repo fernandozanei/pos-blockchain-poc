@@ -62,12 +62,15 @@ class TableViewController: UIViewController {
     }
     
     @objc fileprivate func closeOrder(_ sender: UIButton?) {
-        let menuItems = formVC.menuItems |> map { MenuItemTransaction(name: $0.name, price: $0.price) }
-        let order = OrderTransaction(
-            tableId: tableId,
-            isOpen: sender != nil ? false : (menuItems.isEmpty ? false : true),
-            menuItems: menuItems)
-        blockchain.add(transaction: order)
+        if !formVC.menuItems.isEmpty {
+            let menuItems = formVC.menuItems |> map { MenuItemTransaction(name: $0.name, price: $0.price) }
+            let order = OrderTransaction(
+                tableId: tableId,
+                isOpen: sender != nil ? false : (menuItems.isEmpty ? false : true),
+                menuItems: menuItems)
+            blockchain.add(transaction: order)
+        }
+
         blockchain.add(transaction: TableState(number: tableId, isOpen: false))
         blockchain.mineBlock()
         isClosingOrder = true

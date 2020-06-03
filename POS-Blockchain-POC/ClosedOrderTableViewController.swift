@@ -23,6 +23,8 @@ class ClosedOrderTableViewController: UITableViewController {
 
             return !transaction.isOpen
         }.compactMap { $0 as? OrderTransaction }
+
+        blockchain.listen(for: OrderTransaction.self, with: closedOrderListener)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -33,6 +35,13 @@ class ClosedOrderTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? OrderCell
         cell?.loadOrder(orders[indexPath.row])
         return cell!
+    }
+
+    func closedOrderListener(_ transaction: Transaction) {
+        guard let order = transaction as? OrderTransaction else { return }
+
+        orders.append(order)
+        tableView.reloadData()
     }
 }
 
