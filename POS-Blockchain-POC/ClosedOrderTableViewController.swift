@@ -55,12 +55,7 @@ class OrderCell: UITableViewCell {
         addSubview(tableNumberLabel)
         tableNumberLabel.anchor(top: topAnchor, leading: leadingAnchor, padding: .init(top: 11, left: 11, bottom: 0, right: 0))
         tableNumberLabel.text = "Table \(order.tableId)"
-
-        addSubview(orderValueLabel)
-        orderValueLabel.anchor(trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 11))
-        orderValueLabel.centerYSuperview()
-        orderValueLabel.text = "$ \(order.menuItems.map{$0.price}.reduce(0, +))"
-
+        
         let itemsLabels: [UILabel] = order.menuItems.map {
             let label = UILabel()
             label.text = $0.name
@@ -71,6 +66,11 @@ class OrderCell: UITableViewCell {
         stack.axis = .vertical
 
         addSubview(stack)
-        stack.anchor(top: tableNumberLabel.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: orderValueLabel.leadingAnchor, padding: .init(top: 11, left: 11, bottom: 11, right: 11))
+        stack.anchor(top: tableNumberLabel.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, padding: .init(top: 11, left: 11, bottom: 11, right: 11))
+
+        addSubview(orderValueLabel)
+        orderValueLabel.anchor(trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 11))
+        orderValueLabel.centerYSuperview()
+        orderValueLabel.text = "$ \(order.menuItems.map{$0.price}.reduce(0, +))"
     }
 }
